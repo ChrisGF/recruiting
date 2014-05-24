@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Recuriting::Application.load_tasks
+Recruiting::Application.load_tasks

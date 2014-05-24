@@ -1,24 +1,24 @@
 common: &common
   adapter: postgresql
   encoding: unicode
-  username: <%= Figaro.env.DBUSER %>
-  password: <%= Figaro.env.DBPASS %>
+  # username: add one if needed
+  # password: add one if needed
   
 development:
   <<: *common
-  database: recuriting_app_developement
+  database: recruiting_app_development
   #database: groundfloor_restore
   port: 5432
   host: localhost
 
 test:
   <<: *common
-  database: recuriting_app_test
+  database: recruiting_app_test
   port: 5432
   host: localhost
 
 production:
   <<: *common
-  database: recuriting_app_production
+  database: recruiting_app_production
   port: 5432
   host: localhost

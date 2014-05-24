@@ -1,4 +1,4 @@
-Recuriting::Application.routes.draw do
+Recruiting::Application.routes.draw do
   
   resources :developer_profiles
 
