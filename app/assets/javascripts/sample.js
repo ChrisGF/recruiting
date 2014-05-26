@@ -7,6 +7,10 @@ function showFollowingLegalPopup(caller) {
   $("#legal-popup-following").modal('toggle');
 }
 
+function gotoAnchor(element) {
+    $("html, body").animate({scrollTop:$(element).offset().top-80}, 'slow');
+}
+
 function coreFunctions() {
  //----------------------------------------------------------------
  //  Apply text counters
