@@ -10,7 +10,7 @@ class DealsController < InheritedResources::Base
     @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
     create! do |success, failure|
       success.html { 
-        flash.now[:success] = "Your propsal was created."
+        flash.now[:success] = "Your proposal was created."
         redirect_to deals_path
       }
       failure.html { 
@@ -31,7 +31,7 @@ class DealsController < InheritedResources::Base
     @deal.assign_attributes(permitted_params)
     @deal.validate_project
     if @deal.save
-      flash[:success] = "Your propsal was updated."
+      flash[:success] = "Your proposal was updated."
       redirect_to deals_path
     else
       fixup_paperclip_errors
