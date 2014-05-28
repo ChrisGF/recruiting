@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523183630) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140527001442) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -74,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140523183630) do
     t.integer  "followers_count",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "interest"
   end
 
   create_table "developer_profiles", force: true do |t|

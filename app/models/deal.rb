@@ -3,6 +3,10 @@ class Deal < ActiveRecord::Base
   
   belongs_to :user
   
+  validates :interest, numericality: { greater_than: 0, less_than: 1, too_big: "must be less than 100%" },
+    unless: Proc.new { |d| d.capital_type && d.capital_type == 'Equity' }
+  validates :interest, numericality: { equal_to: 0 }, if: Proc.new { |d| d.capital_type == 'Equity' }
+  
   scope :published, -> {    
     self.with_state(:published)
   }

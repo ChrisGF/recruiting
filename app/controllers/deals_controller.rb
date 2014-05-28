@@ -8,13 +8,14 @@ class DealsController < InheritedResources::Base
   
   def create
     @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
+    @deal.interest = (@deal.interest/100).round(4) if @deal.interest > 1
+    
     create! do |success, failure|
       success.html { 
         flash.now[:success] = "Your proposal was created."
         redirect_to deals_path
       }
       failure.html { 
-        fixup_paperclip_errors
         flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
         render :new
       }
@@ -27,14 +28,14 @@ class DealsController < InheritedResources::Base
 
   def update
     @deal = current_user.deals.where(:id => params[:id]).first || Deal.new(permitted_params.merge({user_id: current_user.id }))
-
+    
     @deal.assign_attributes(permitted_params)
+    @deal.interest = (@deal.interest/100).round(4) if @deal.interest > 1
     @deal.validate_project
     if @deal.save
       flash[:success] = "Your proposal was updated."
       redirect_to deals_path
     else
-      fixup_paperclip_errors
       flash.now[:error] = "Your project was not updated. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
       render :edit
     end

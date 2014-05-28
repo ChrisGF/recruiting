@@ -87,4 +87,12 @@ module ApplicationHelper
   def set_cookie_key_value(key, value)
     cookies[key] = value
   end
+  
+  def in_percent(number)
+    if number.to_f > 1
+      number
+    else
+      number.to_f*100
+    end
+  end
 end

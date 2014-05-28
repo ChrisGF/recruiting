@@ -50,16 +50,21 @@
             %span.input-group-addon=".00"
             
       .form-group
-        %label.control-label.col-lg-4="Capital Type"
-        .col-lg-6
-          = f.select :capital_type, Deal::CAPITAL_TYPE, { include_blank: "Please select capital type" }, { class: "form-control required" }
-      .form-group
         %label.control-label.col-lg-4="Targeted Close"
         .col-lg-6
           = f.select :close_timeline, Deal::CLOSE_TIMELINE, { include_blank: "Please select closing timeframe" }, { class: "form-control required" }
-          
-          
-
+      .form-group
+        %label.control-label.col-lg-4="Capital Type"
+        .col-lg-6
+          = f.select :capital_type, Deal::CAPITAL_TYPE, { include_blank: "Please select capital type" }, { class: "form-control required", onchange: "showInterestUnlessEquity()" }
+      
+      #interest.form-group{class: ("hidden" if deal.capital_type.nil? || deal.capital_type == 'Equity')}
+        %label.control-label.col-lg-4="Interest Percentage"
+        .col-lg-4
+          .input-group
+            = f.number_field :interest, class: "form-control", min:0, max:100, step:'any', value: in_percent(deal.interest)
+            %span.input-group-addon="%"
+            
   .row
     .col-lg-12.text-center
       %button.btn.btn-primary.btn-lg{ type: "submit", "data-disable-with" => "SUBMITTING PROJECT" }

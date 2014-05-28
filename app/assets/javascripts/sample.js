@@ -11,6 +11,16 @@ function gotoAnchor(element) {
     $("html, body").animate({scrollTop:$(element).offset().top-80}, 'slow');
 }
 
+function showInterestUnlessEquity() {
+    if($('#deal_capital_type').val() == 'Equity' || $('#deal_capital_type').val() == '') {
+        // if the user changed the capital type to Equity or blank, reset the interest to 0.
+        $('#deal_interest').val(0);
+        $('#interest').addClass('hidden');
+    } else {
+        $('#interest').removeClass('hidden');
+    }
+}
+
 function coreFunctions() {
  //----------------------------------------------------------------
  //  Apply text counters
