@@ -1,6 +1,4 @@
 class Deal < ActiveRecord::Base
-  require 'descriptive_statistics/safe'
-   
   include Groundfloor::Addressable
   
   belongs_to :user
@@ -125,14 +123,17 @@ class Deal < ActiveRecord::Base
   
   def self.interest_percentile(percent)
     interest_array = self.requested_interest_rates
-    interest_array.extend(DescriptiveStatistics)
-    return interest_array.percentile(percent)
+    index_at_percentile = (percent*interest_array.size).round(0)
+    
+    #prevent off-by-one errors for cases of small-ish arrays and high percentiles
+    index_at_percentile -= 1 if index_at_percentile >= interest_array.size
+    
+    interest_array[index_at_percentile]
   end
   
   def self.interest_average
     interest_array = self.requested_interest_rates
-    interest_array.extend(DescriptiveStatistics)
     
-    return interest_array.mean
+    interest_array.inject(:+)/interest_array.size
   end
 end
