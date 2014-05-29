@@ -1,4 +1,6 @@
 class Deal < ActiveRecord::Base
+  require 'descriptive_statistics/safe'
+   
   include Groundfloor::Addressable
   
   belongs_to :user
@@ -117,4 +119,20 @@ class Deal < ActiveRecord::Base
     end
   end
   
+  def self.requested_interest_rates
+    self.all.map(&:interest).reject{|i| i == 0}.sort
+  end
+  
+  def self.interest_percentile(percent)
+    interest_array = self.requested_interest_rates
+    interest_array.extend(DescriptiveStatistics)
+    return interest_array.percentile(percent)
+  end
+  
+  def self.interest_average
+    interest_array = self.requested_interest_rates
+    interest_array.extend(DescriptiveStatistics)
+    
+    return interest_array.mean
+  end
 end

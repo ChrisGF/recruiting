@@ -33,6 +33,7 @@ gem 'money-rails'
 gem 'monetize'
 gem "google-webfonts-rails"
 gem "font-awesome-rails"
+gem 'descriptive_statistics', '~> 1.1.5'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
