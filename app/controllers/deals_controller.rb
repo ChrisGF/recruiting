@@ -1,5 +1,6 @@
 class DealsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index]
+  before_filter :set_interest_rate_stats, only: [:new, :edit]
   
   def index
     @deals = current_user.deals.order(:name)
@@ -70,10 +71,16 @@ class DealsController < InheritedResources::Base
   end
   
   protected
-    def permitted_params
-      params.require(:deal).permit!
-    end
-    
+
+  def permitted_params
+    params.require(:deal).permit!
+  end
   private :permitted_params
+
+  def set_interest_rate_stats
+    @interest_rate_average    = Deal.interest_average
+    @interest_5th_percentile  = Deal.interest_percentile(0.05)
+    @interest_95th_percentile = Deal.interest_percentile(0.95)
+  end
   
 end

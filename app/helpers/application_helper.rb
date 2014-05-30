@@ -90,9 +90,9 @@ module ApplicationHelper
   
   def in_percent(number)
     if number.to_f > 1
-      number
+      (number).round(2)
     else
-      number.to_f*100
+      (number.to_f*100).round(2)
     end
   end
 end

@@ -891,7 +891,7 @@ ul.padded_list {
 }
 
 //---------------------------------------------------------------
-// New Deals Styling
+// Deals Styling
 //---------------------------------------------------------------
 table.new_deals {
   margin-left: 0px;
@@ -1034,4 +1034,8 @@ table.new_deals {
   .actions {
     background-color: $color1;
   }
+}
+
+p.interest-rate-explanation {
+  b { color:black; } 
 }
