@@ -118,11 +118,9 @@ class Deal < ActiveRecord::Base
   def invalid_deal?
     self.messages = []
     self.messages.push(self.too_long_message) if INVALID_DATES.include?(self.close_timeline)
-    
-    ( INVALID_DATES.include?(self.close_timeline) ||
-      self.amount_to_raise > 250000 ||
-      INVALID_CAPITAL_TYPES.include?(self.capital_type) 
-    )
+    self.messages.push(self.too_much_message) if self.amount_to_raise.cents > 20000000
+    self.messages.push(self.invalid_capital_message) if INVALID_CAPITAL_TYPES.include?(self.capital_type)
+    return !self.messages.empty?
   end
   
   def validate_project
