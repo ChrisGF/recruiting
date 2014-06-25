@@ -1,0 +1,14 @@
+<h4>Model:</h4>
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#800000; font-weight:bold; '>def</span> published
+    where<span style='color:#808030; '>(</span>published:<span style='color:#800000; font-weight:bold; '>true</span><span style='color:#808030; '>)</span>
+<span style='color:#800000; font-weight:bold; '>end</span>
+</pre></pre>
+
+<h4>Controller:</h4>
+
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#800000; font-weight:bold; '>def</span> investments
+  @published_offers <span style='color:#808030; '>=</span> Deal<span style='color:#808030; '>.</span>published
+<span style='color:#800000; font-weight:bold; '>end</span>
+</pre></pre>

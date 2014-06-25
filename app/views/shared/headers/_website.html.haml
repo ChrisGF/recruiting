@@ -13,8 +13,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     .collapse.navbar-collapse{ id: "bs-example-navbar-collapse-1"}
       %ul.nav.navbar-nav.navbar-right
+        %li{class: ((content_for :header_tab) == "tim" ? "active" : "")}
+          = link_to("Tim", root_path)
         %li{class: ((content_for :header_tab) == "instructions" ? "active" : "")}
-          = link_to("Instructions", root_path)
+          = link_to("Instructions", instructions_path)
         %li{class: ((content_for :header_tab) == "investments" ? "active" : "")}
           = link_to("Investments", investments_path)
         %li{class: ((content_for :header_tab) == "developers" ? "active" : "")}

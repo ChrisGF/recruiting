@@ -4,9 +4,13 @@ class HomeController < ApplicationController
 
   def next_steps
   end
-
+  
+  def instructions
+    
+  end
+  
   def investments
-    @published_offers = Deal.all
+    @published_offers = Deal.published
   end
 
   def developers

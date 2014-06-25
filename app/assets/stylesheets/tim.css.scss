@@ -1,0 +1,22 @@
+// Place all the styles related to the tim controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+p.descriptive-text{
+   color:black;
+}
+
+#carousel-tim img{
+  width:auto;
+  height:500px;
+  
+}
+
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.carousel-inner > .item > a {
+    margin: 0 auto;
+}

@@ -31,7 +31,7 @@ module ApplicationHelper
 
   def error_message(html, errors=nil, pre_error_message=nil)
     html += format_errors_hash(errors, pre_error_message) if errors
-    return raw("<div class='alert alert-error'>#{html}</div>") unless html.blank?
+    return raw("<div class='alert alert-error bg-danger'>#{html}</div>") unless html.blank?
   end
 
   def format_errors_hash(errors=nil, pre_error_message=nil)

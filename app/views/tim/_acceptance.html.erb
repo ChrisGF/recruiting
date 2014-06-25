@@ -1,0 +1,26 @@
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#800000; font-weight:bold; '>def</span> too_long_message
+    <span style='color:#0000e6; '>"We are not currently accepting deals that end before Oct 2014"</span>
+  <span style='color:#800000; font-weight:bold; '>end</span>
+  
+  <span style='color:#800000; font-weight:bold; '>def</span> too_much_message
+    <span style='color:#0000e6; '>"We are only accepting deals less than $200,000"</span>
+  <span style='color:#800000; font-weight:bold; '>end</span>
+  
+  <span style='color:#800000; font-weight:bold; '>def</span> invalid_capital_message
+    <span style='color:#0000e6; '>"We are only accepting Debt and Flexible capital types"</span>
+  <span style='color:#800000; font-weight:bold; '>end</span>
+  
+  <span style='color:#800000; font-weight:bold; '>def</span> invalid_state_message
+    <span style='color:#0000e6; '>"We are only accepting deals in Georgia"</span>
+  <span style='color:#800000; font-weight:bold; '>end</span>
+
+  <span style='color:#800000; font-weight:bold; '>def</span> invalid_deal?
+    <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages <span style='color:#808030; '>=</span> <span style='color:#808030; '>[</span><span style='color:#808030; '>]</span>
+    <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>push<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>too_long_message<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>if</span> INVALID_DATES<span style='color:#808030; '>.</span>include?<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>close_timeline<span style='color:#808030; '>)</span>
+    <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>push<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>too_much_message<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>if</span> <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>amount_to_raise<span style='color:#808030; '>.</span>cents > <span style='color:#008c00; '>20000000</span>
+    <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>push<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>invalid_capital_message<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>if</span> INVALID_CAPITAL_TYPES<span style='color:#808030; '>.</span>include?<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>capital_type<span style='color:#808030; '>)</span>
+    <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>push<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>invalid_state_message<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>if</span> <span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>address<span style='color:#808030; '>.</span>state <span style='color:#808030; '>!=</span> <span style='color:#0000e6; '>"GA"</span>
+    <span style='color:#800000; font-weight:bold; '>return</span> !<span style='color:#800000; font-weight:bold; '>self</span><span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>empty?
+  <span style='color:#800000; font-weight:bold; '>end</span>
+</pre></pre>
