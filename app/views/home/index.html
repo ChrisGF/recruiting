@@ -1,0 +1,54 @@
+<% set_header_tab("tim") %>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Tim's Demo</h1>
+        <p class="lead">I hope you enjoy viewing my recruiting submission as much as I did creating it.  Off to a bumpy start getting going (bundler takes for-ever!), but I am pleased with the result.  Hopefully this small project demonstrates enough of my development skills and personality.  If not, I have plenty of my own code to show and can tell a few jokes to make you like me better! </p>
+    </div>
+ 
+    
+    <div class="row">
+       <div class="col-sm-4">
+         <div class="thumbnail">
+           <div class="caption">
+             <h3>Defects</h3>
+             <ul>
+             	<li>Updated Criteria</li>
+             	<li>Added Javascript Scroll</li>
+             	<li>Corrected Developer State</li>
+             	<li>Created Published Scope</li>
+             </ul>
+             
+             <p class="text-center"><a href=<%= defects_path %> class="btn btn-primary" role="button">See More</a></p>
+           </div>
+         </div>
+       </div>
+  
+       <div class="col-sm-4">
+          <div class="thumbnail">
+            <div class="caption">
+               <h3>Features</h3>
+               <ul>
+               	  <li>Invalid Deals Now Display Reasons</li>
+               </ul>
+               <p class="text-center"><a href=<%=features_path%> class="btn btn-primary" role="button">See More</a></p>
+            </div>
+          </div>
+       </div>
+  
+       <div class="col-sm-4">
+         <div class="thumbnail">
+           <div class="caption">
+              <h3>About Tim</h3>
+             <ul>
+             	<li>Self Taught Developer</li>
+             	<li>Knows Rails and Javascript</li>
+             	<li>Professional Development Experience</li>
+             	<li>All Around Awesome Guy</li>
+             </ul>
+              <p class="text-center"><a href=<%=about_path%> class="btn btn-primary" role="button">See More</a></p>
+           </div>
+        </div>
+       </div>    
+    </div>
+</div>

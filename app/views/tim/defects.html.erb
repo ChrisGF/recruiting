@@ -1,0 +1,86 @@
+
+
+
+<div class="container">
+    <div class="page-header">
+      <h1>Defects</h1>
+    </div>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#acceptance">
+          Acceptance Criteria
+        </a>
+      </h4>
+    </div>
+    <div id="acceptance" class="panel-collapse collapse in">
+      <div class="panel-body">
+         <%= render 'acceptance'%>
+      	
+         The code above defines four methods that provide informational messages.  The invalid_deal? method then validates the deal and adds messages for failed criteria.  The method then checks to see if the messages array is empty to return true or false to signify whether the deal is valid.  The messages array then can be used to display information to the user regarding why their deal isn't accepted. 
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#javascript">
+          Scroll to Tag
+        </a>
+      </h4>
+    </div>
+    <div id="javascript" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<%= render 'javascript'%>
+      	
+      	The code above provides the missing gotoAnchor function.  It calculates the top position of the desired tag, and then uses the jquery animate function to slowly scroll the window to the desired tag. 
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#developer">
+          Developers Highlighting
+        </a>
+      </h4>
+    </div>
+    <div id="developer" class="panel-collapse collapse">
+      <div class="panel-body">
+      <%= render 'developer'%>
+       	
+      The developers page was missing the call to the helper function that the header uses in order to provide styling to the link in the header.  
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#published">
+          Published Scope
+        </a>
+      </h4>
+    </div>
+    <div id="published" class="panel-collapse collapse">
+      <div class="panel-body">
+      	 <%= render 'published'%>
+      	
+         In the deals model, a reusable published scope was created.  This allows the controller to call Deal.published and get only published deals.  This is the preferred method since now the published scope can be used throughout the application.  Simply modifying the Deal.all to a Deal.where(published: true) in the controller would trap that scope in the controller.
+      </div>
+    </div>
+  </div>  
+  </div>
+</div>
+
+<div class="text-center">
+<p>Code snippets generate from http://www.tohtml.com/</p>
+</div>
+
+
+
+
+
+
+</div>

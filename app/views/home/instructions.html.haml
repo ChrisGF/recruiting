@@ -1,0 +1,179 @@
+= set_header_tab("instructions")
+
+%section.container-wrapper{id: "why"}
+  .container
+    .row
+      .col-lg-4
+        %h1="Why are you here?"
+      .col-lg-8
+        %p
+          If you are looking at this message it means that you are interested in working with us at #{link_to("GROUNDFLOOR", "https://www.groundfloor.us")}.  If that's not the case you are seriously in the wrong place!!  
+        
+        %p
+          The goal of this sample project is to help both of us get to know each other a little better by actually doing some work.   This project was built in the same way we have built the GROUNDFLOOR website.  So as you look around and get into the code base you will start to get a sense of how we work. Of course through your fixes, additions and commits we start to get a sense of how you work.  
+        
+        %p
+          Make sense?   Cool, lets get started.
+ 
+    %hr
+    .row.padded
+      .col-lg-6
+        %h4="Getting Started"
+        %table.steps
+          %tr
+            %td
+              - if User.count > 0
+                %label.icon.good
+                  %i.fa.fa-check
+              - else
+                %label.icon
+                  %span="1"
+            %td
+              Make sure to setup the database and load the seed data to get you started on the right foot.
+              %div{class: "#{"hide" if User.count > 0}"}
+                %code
+                  rake db:seed
+
+          %tr
+            %td
+              %label.icon
+                %span="2"
+            %td
+              Review the application, code and information on this page.  Check out the gem file to see what tools have been added to help you out.  When you are ready make a commit to show you are starting. 
+
+          %tr
+            %td
+              %label.icon
+                %span="3"
+            %td
+              Locate and fix the bugs listed below.  Also fix any new ones encountered along the way:  
+              %ul
+                %li="The Investments page should only show \"published\" deals.  Right now it is showing all deals, so please make sure it only shows published deals."
+                %li="The \"Developers\" tab in the header does not reflect the selected state.  When you click on the page, the header item should turn green and have an underline."
+                %li="The \"Why sign up?\" and the \"How it works?\" links on the developers page don't scroll to the correct section on the page.  When you click the link the page is supposed to scroll down to the right element."
+                %li
+                  The criteria for an \"acceptable\" deal needs to be updated.  Please make sure the attributes listed below are checked for the proper criteria:
+                  %table.criteria
+                    %tr
+                      %th.text-center{colspan: "2"}="Acceptable Deal Criteria"
+                    %tr
+                      %td.blue="Close Timeline"
+                      %td="We can't accept deals with a close time before Oct 2014"
+                    %tr
+                      %td.blue="Amount To Raise"
+                      %td="We can't accept deals looking to raise more than $200,000"
+                    %tr
+                      %td.blue="State"
+                      %td="We can't accept deals outside of Gerogia"
+                    
+              
+          %tr
+            %td
+              %label.icon
+                %span="4"
+            %td
+              Please add at least one of of the following enhancements:
+              %ul
+                %li="Add an admin interface for us to checkout the deals."
+                %li="Add the ability for a user to upload a picture on a deal and then reflect it on the index page"
+                %li="Give a way for a developer to view and update their profile information."
+                %li="Add the ability for a user to \"follow\" deals they are interested in."
+
+          %tr
+            %td
+              %label.icon
+                %span="5"
+            %td
+              Add any additional items that interest you.  How would you spruce up the app?  Feel free to change layouts or models, add styles, new pages, etc.  This is the time to show us your creative side.  
+
+          %tr
+            %td
+              %label.icon
+                %span="6"
+            %td
+              Finally, submit a pull request once you are all done.  We will check out your work and be in touch with you soon with the next steps. 
+              
+              
+ 
+      .col-lg-5.col-lg-offset-1
+        %h4
+          What you 
+          %span.green.underline="should"
+          do
+        %ul.padded_list
+          %li
+            %b.green="Enjoy your work."
+            Seriously, you are not being paid for this, so have a little fun with it.
+          %li
+            %b.green="Do your best."
+            There is no right or wrong answer, just do what you can.
+          %li
+            %b.green="Ask Questions."
+            We are not perfect &hellip;  If something doesn't make sense to you, it is probably wrong.   Please feel free to reach out to #{mail_to("chris@groundfloor.us", "us with any questions", subject: "Recruting App Question")} you might have.  
+
+
+        %h4
+          What you 
+          %i.red.underline="shouldn't"
+          do!
+        %ul.padded_list
+          %li
+            %b.red="Don't Work All Weekend!!!"
+            Please don't spend more than 8 hours on this.   The goal is to get a sense for what you do and how you do it &hellip; not to re-write this 
+            %i="sample"
+            application.   Remember there is no right or wrong way to finish this exercise.
+          %li
+            %b.red="Don't Copy And Paste!!!"
+            We all check out stack overflow and google all the time.  But make sure you submit code that you have written or at least thoroughly understand.  Who knows you might be asked to explain it if we meet in person.  
+          
+%section.container-wrapper.odd{id: "what"}
+  .container
+    .row
+      .col-lg-6
+        %h1="About This Application"
+        %p
+          This sample application is very close to the first version of our website.   When we started GROUNDFLOOR we need to attract developers and their projects.  To build our funnel we created a simple little application that allowed developers to sign up and tell us something about the project they wanted to raise funds for. The goals for our original website were simple and straight forward.   The sample application you are working on is designed to mimic those simple goals.
+        %p.padded
+          Website Goals:
+          %ul.padded_list
+            %li
+              %p="Developers need the ability to create and maintain a GROUNDFLOOR account."
+            %li
+              %p="We need to collect some information about the developer as part of the sign up process."
+            %li
+              %p="Developers should be able to submit a project through the website and get feedback on wether or not it meets our funding criteria."
+            %li
+              %p="Projects that match out criteria should then be displayed on the investments page."
+        %p
+          Thank you for your interest in working with us here at GROUNDFLOOR and look forward to speaking with you.   
+          
+          
+      
+      .col-lg-6
+        .carousel.slide{id: "carousel-example-generic", "data-ride"=>"carousel"}
+          <!-- Indicators -->
+          %ol.carousel-indicators
+            %li.active{"data-target"=>"#carousel-example-generic", "data-slide-to"=>"0"}
+            %li{"data-target"=>"#carousel-example-generic", "data-slide-to"=>"1"}
+            %li{"data-target"=>"#carousel-example-generic", "data-slide-to"=>"2"}
+            %li{"data-target"=>"#carousel-example-generic", "data-slide-to"=>"3"}
+
+          <!-- Wrapper for slides -->
+          .carousel-inner
+            .item.active
+              =image_tag("screenshots/DevelopersIndex.png")
+            .item
+              =image_tag("screenshots/Profile.png")
+            .item
+              =image_tag("screenshots/NewProject.png")
+            .item
+              =image_tag("screenshots/NextSteps.png")
+
+          <!-- Controls -->
+          %a.left.carousel-control{href: "#carousel-example-generic", "data-slide"=>"prev"}
+            %span.glyphicon.glyphicon-chevron-left
+          </a>
+          %a.right.carousel-control{href: "#carousel-example-generic", "data-slide"=>"next"}
+            %span.glyphicon.glyphicon-chevron-right
+        
+        %figcaption="Developers Registration, Circa April, 2013"

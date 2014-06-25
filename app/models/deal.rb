@@ -114,12 +114,17 @@ class Deal < ActiveRecord::Base
   def invalid_capital_message
     "We are only accepting Debt and Flexible capital types"
   end
+  
+  def invalid_state_message
+    "We are only accepting deals in Georgia"
+  end
 
   def invalid_deal?
     self.messages = []
     self.messages.push(self.too_long_message) if INVALID_DATES.include?(self.close_timeline)
     self.messages.push(self.too_much_message) if self.amount_to_raise.cents > 20000000
     self.messages.push(self.invalid_capital_message) if INVALID_CAPITAL_TYPES.include?(self.capital_type)
+    self.messages.push(self.invalid_state_message) if self.address.state != "GA"
     return !self.messages.empty?
   end
   

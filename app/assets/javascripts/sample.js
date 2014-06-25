@@ -27,7 +27,8 @@ function coreFunctions() {
 
  $("[rel='tooltip']").tooltip();
  $("[rel='popover']").popover();
- 
+
+
  
 }
 

@@ -1,12 +1,18 @@
 Recruiting::Application.routes.draw do
   
+
   resources :developer_profiles
 
   match "/", to: "home#index", via: [:get]
   match "/investments", to: "home#investments", :as => :investments, via: [:get]
   match "/developers", to: "home#developers", :as => :developers, via: [:get]
+  match "/instructions", to: "home#instructions", :as => :instructions, via: [:get]
   match "/developers/next-steps", to: "home#next_steps", :as => :developers_next_steps, via: [:get]
   match '/accept_legal_message.js', to: 'deals#accept_legal_popup', :as => :accept_legal_popup, :via => [:get]
+  
+  match "/tim/defects", to: "tim#defects", :as => :defects, via: [:get]
+  match "/tim/features", to: "tim#features", :as => :features, via: [:get]
+  match "/tim/about", to: "tim#about", :as => :about, via: [:get]
 
   resources(:deals) do
     match '/publish', to: 'deals#publish', :as => :publish, :via => [:post, :put]
