@@ -23,7 +23,7 @@
          
          <%= render 'following_controller'%>
          
-         I added logic to check whether the deal was valid or not. If it was not valid, the messages were joined with a line break for formatting and added to the flash.  To get the flash to display, I had to add the standard bootstrap bg-danger class to the flash helper.  Well I was doing this, I modified the way the deal was build and saved.  Before, the controller called Deal.new and passed in current_user.id as a parameter.  While this is unlikely to cause a practical difference, using current_user.deals.build is stylistically more railsish and provides slightly greater protection against creating a deal with no user. 
+         I added logic to check whether the deal was valid or not. If it was not valid, the messages were joined with a line break for formatting and added to the flash.  To get the flash to display, I had to add the standard bootstrap bg-danger class to the flash helper.  Well I was doing this, I modified the way the deal was created.  Before, the controller called Deal.new and passed in current_user.id as a parameter.  While this is unlikely to cause a practical difference, using current_user.deals.build is stylistically more railsish and provides slightly greater protection against creating a deal with no user. 
       </div>
     </div>
   </div>

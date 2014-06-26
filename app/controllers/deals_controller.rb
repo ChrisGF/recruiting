@@ -2,6 +2,10 @@ class DealsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index]
   
   def index
+    if current_user.nil?
+      flash[:error] = "You must be logged in to access the Deals page."
+      return redirect_to new_user_session_path
+    end
     @deals = current_user.deals.order(:name)
     return redirect_to "/developers/next-steps" if @deals.length < 1
   end

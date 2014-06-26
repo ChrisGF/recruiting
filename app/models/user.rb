@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   before_create :split_name
 
   has_many :deals, :dependent => :destroy
-  has_many :user_deals
+  has_many :user_deals, dependent: :destroy
   has_many :followed_deals, through: :user_deals, source: :deal
 
 
