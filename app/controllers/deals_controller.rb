@@ -7,20 +7,16 @@ class DealsController < InheritedResources::Base
   end
   
   def create
-    @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
+    @deal = current_user.deals.build(permitted_params)
     if @deal.save
-        puts "deal saved"
         if @deal.invalid_deal? 
-           puts "invalid deal"
            flash[:error] = @deal.messages.join("<br>")
            redirect_to deals_path
         else
-           puts "else"   
            flash.now[:success] = "Your proposal was created."
            redirect_to deals_path
         end     
     else
-      puts "deal didnt save"
         fixup_paperclip_errors
         flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
         render :new      

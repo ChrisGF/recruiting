@@ -1,0 +1,34 @@
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+ActiveAdmin<span style='color:#808030; '>.</span>register Deal <span style='color:#800000; font-weight:bold; '>do</span>
+    controller <span style='color:#800000; font-weight:bold; '>do</span>
+      <span style='color:#800000; font-weight:bold; '>def</span> scoped_collection
+        Deal<span style='color:#808030; '>.</span>includes<span style='color:#808030; '>(</span>:address<span style='color:#808030; '>)</span>
+      <span style='color:#800000; font-weight:bold; '>end</span>
+    <span style='color:#800000; font-weight:bold; '>end</span>
+  
+  index <span style='color:#800000; font-weight:bold; '>do</span>
+    column :id
+    column :capital_type
+    column :amount_to_raise <span style='color:#800000; font-weight:bold; '>do</span> |deal|
+       deal<span style='color:#808030; '>.</span>amount_to_raise<span style='color:#808030; '>.</span><span style='color:#400000; '>format</span>
+    <span style='color:#800000; font-weight:bold; '>end</span>
+    column :close_timeline
+    column :name
+    column :deal_state <span style='color:#800000; font-weight:bold; '>do</span> |deal|
+       deal<span style='color:#808030; '>.</span>address<span style='color:#808030; '>.</span>state
+    <span style='color:#800000; font-weight:bold; '>end</span>
+    
+ 
+  <span style='color:#800000; font-weight:bold; '>end</span>
+   
+    <span style='color:#696969; '># Create sections on the index screen</span>
+  scope :all, :default <span style='color:#808030; '>=</span>> <span style='color:#800000; font-weight:bold; '>true</span>
+  scope :published
+
+  <span style='color:#696969; '># Filterable attributes on the index screen</span>
+  filter :capital_type, as: :check_boxes, collection: <span style='color:#400000; '>lambda</span><span style='color:#800080; '>{</span> Deal::CAPITAL_TYPE <span style='color:#800080; '>}</span>
+  filter :close_timeline, as: :check_boxes, collection: <span style='color:#400000; '>lambda</span><span style='color:#800080; '>{</span> Deal::CLOSE_TIMELINE <span style='color:#800080; '>}</span>
+  filter :amount_to_raise
+  filter :created_at 
+<span style='color:#800000; font-weight:bold; '>end</span>
+</pre></pre>

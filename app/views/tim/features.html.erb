@@ -18,6 +18,12 @@
         <div class="alert alert-error bg-danger">We are not currently accepting deals that end before Oct 2014<br>We are only accepting deals less than $200,000<br>We are only accepting Debt and Flexible capital types<br>We are only accepting deals in Georgia</div>
       	
         By using the methods created while updating the criteria for deals, the above flash can be generated.  This allows the system to record the interest from the developer while showing them why their deal isn't currently being accepted. 
+         </br>
+         The code to accomplish that is as follows:
+         
+         <%= render 'following_controller'%>
+         
+         I added logic to check whether the deal was valid or not. If it was not valid, the messages were joined with a line break for formatting and added to the flash.  To get the flash to display, I had to add the standard bootstrap bg-danger class to the flash helper.  Well I was doing this, I modified the way the deal was build and saved.  Before, the controller called Deal.new and passed in current_user.id as a parameter.  While this is unlikely to cause a practical difference, using current_user.deals.build is stylistically more railsish and provides slightly greater protection against creating a deal with no user. 
       </div>
     </div>
   </div>
@@ -34,10 +40,46 @@
       <div class="panel-body">
       	 <%= render 'following'%>
       	 
-      	 The above model UserDeal was created in order to serve as the association between users and deals.  This allows a user to follow an arbitrary number of deals and for deals to have an arbitrary number of followers.  The 'source:' parameter has been used to give the association convenient names.  I prefer creating a separate model over user has_and_belongs_to_many because it allows you more flexibility.  In this case, I have added a validation that prevents a user from following their own deals.  
+      	 The above model UserDeal was created in order to serve as the association between users and deals.  This allows a user to follow an arbitrary number of deals and for deals to have an arbitrary number of followers.  The 'source:' parameter has been used to give the association convenient names.  I prefer creating a separate model over user has_and_belongs_to_many because it allows you more flexibility.  In this case, I have added a validation that prevents a user from following their own deals. <br/>  
+
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#admin">
+          Deals Administration
+        </a>
+      </h4>
+    </div>
+    <div id="admin" class="panel-collapse collapse">
+      <div class="panel-body">
+      	 <%= render 'admin'%>
+      	 
+         I had heard about active admin, but never used it before.  It took a bit of reading to get going, but I found it surprisingly powerful and easy to use.  I customized the default index for deals a bit to improve it.  The most important thing was to override the default scoped_collection method.  I did this in order to use the includes method on deals to avoid the N+1 performance issue.  Other items are additional filters, reusing my published scope, formatting the amount_to_raise column, and adding the deal state.  
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#loginout">
+          Login/Logout and Deals Link
+        </a>
+      </h4>
+    </div>
+    <div id="loginout" class="panel-collapse collapse">
+      <div class="panel-body">
+      	 <%= render 'loginout'%>
+      	 
+      	 Before, there was no way for a user to log out of their session and the "Login" link remained even when logged in.  I modified the headers to add a new "Deals" link so that a user can access their deals instead of clicking on "Login".  Once a user is logged in "Login" switches to "Logout", and on click ends the user's session.
+      </div>
+    </div>
+  </div>
+
     
 </div>
 

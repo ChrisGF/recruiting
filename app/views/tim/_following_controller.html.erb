@@ -1,0 +1,18 @@
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#800000; font-weight:bold; '>def</span> create
+    @deal <span style='color:#808030; '>=</span> current_user<span style='color:#808030; '>.</span>deals<span style='color:#808030; '>.</span>build<span style='color:#808030; '>(</span>permitted_params<span style='color:#808030; '>)</span>
+<span style='color:#800000; font-weight:bold; '>&#xa0;&#xa0;&#xa0;&#xa0;if</span> @deal<span style='color:#808030; '>.</span>save
+<span style='color:#800000; font-weight:bold; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;if</span> @deal<span style='color:#808030; '>.</span>invalid_deal? 
+           flash<span style='color:#808030; '>[</span>:error<span style='color:#808030; '>]</span> <span style='color:#808030; '>=</span> @deal<span style='color:#808030; '>.</span>messages<span style='color:#808030; '>.</span>join<span style='color:#808030; '>(</span><span style='color:#0000e6; '>"&lt;br>"</span><span style='color:#808030; '>)</span>
+           redirect_to deals_path
+        <span style='color:#800000; font-weight:bold; '>else</span>
+           flash<span style='color:#808030; '>.</span>now<span style='color:#808030; '>[</span>:success<span style='color:#808030; '>]</span> <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>"Your proposal was created."</span>
+           redirect_to deals_path
+        <span style='color:#800000; font-weight:bold; '>end</span>     
+    <span style='color:#800000; font-weight:bold; '>else</span>
+        fixup_paperclip_errors
+        flash<span style='color:#808030; '>.</span>now<span style='color:#808030; '>[</span>:error<span style='color:#808030; '>]</span> <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>"Your project was not created. Please address the errors listed below and try again: &lt;br>&lt;span>#{@deal.errors.full_messages.join('&lt;br>')}&lt;/span>"</span>
+        render :<span style='color:#800000; font-weight:bold; '>new</span>      
+    <span style='color:#800000; font-weight:bold; '>end</span>
+  <span style='color:#800000; font-weight:bold; '>end</span>
+</pre></pre>

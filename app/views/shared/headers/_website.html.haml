@@ -21,5 +21,11 @@
           = link_to("Investments", investments_path)
         %li{class: ((content_for :header_tab) == "developers" ? "active" : "")}
           = link_to("Developers", developers_path)
-        %li{class: ((content_for :header_tab) == "account" ? "active" : "")}
-          = link_to("Login", new_user_session_path)
+        %li{class: ((content_for :header_tab) == "deals" ? "active" : "")}
+          = link_to("Deals", deals_path)
+        - if current_user
+          %li{class: ((content_for :header_tab) == "account" ? "active" : "")}
+            = link_to("Logout", destroy_user_session_path, method: :delete)        
+        - else         
+          %li{class: ((content_for :header_tab) == "account" ? "active" : "")}
+            = link_to("Login", new_user_session_path)
