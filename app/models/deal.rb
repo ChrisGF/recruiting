@@ -4,6 +4,8 @@ class Deal < ActiveRecord::Base
   attr_accessor :messages
   
   belongs_to :user
+  has_many :user_deals
+  has_many :followers, through: :user_deals, source: :user
   
   scope :published, -> {    
     self.with_state(:published)

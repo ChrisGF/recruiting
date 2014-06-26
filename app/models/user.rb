@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   before_create :split_name
 
   has_many :deals, :dependent => :destroy
+  has_many :user_deals
+  has_many :followed_deals, through: :user_deals, source: :deal
+
 
   has_one :developer_profile, :dependent => :destroy
   accepts_nested_attributes_for :developer_profile

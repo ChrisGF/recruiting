@@ -21,11 +21,28 @@
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#following">
+          Follow Deals
+        </a>
+      </h4>
+    </div>
+    <div id="following" class="panel-collapse collapse">
+      <div class="panel-body">
+      	 <%= render 'following'%>
+      	 
+      	 The above model UserDeal was created in order to serve as the association between users and deals.  This allows a user to follow an arbitrary number of deals and for deals to have an arbitrary number of followers.  The 'source:' parameter has been used to give the association convenient names.  I prefer creating a separate model over user has_and_belongs_to_many because it allows you more flexibility.  In this case, I have added a validation that prevents a user from following their own deals.  
+      </div>
+    </div>
+  </div>
     
 </div>
 
 <div class="text-center">
-<p>Code snippets generate from http://www.tohtml.com/</p>
+<p>Code snippets generated from http://www.tohtml.com/</p>
 </div>
 
 

@@ -1,0 +1,19 @@
+<pre style='color:#000000;background:#ffffff;border:none;'><html><body style='color:#000000; background:#ffffff; '><pre>
+class UserDeal <span style='color:#808030; '>&lt;</span> ActiveRecord<span style='color:#800080; '>::</span>Base
+  belongs_to <span style='color:#800080; '>:</span>user
+  belongs_to <span style='color:#800080; '>:</span>deal
+  
+  validate <span style='color:#800080; '>:</span>not_owner
+  
+  def is_owner<span style='color:#800080; '>?</span>
+      self<span style='color:#808030; '>.</span>deal<span style='color:#808030; '>.</span>user_id <span style='color:#808030; '>=</span><span style='color:#808030; '>=</span> self<span style='color:#808030; '>.</span>user_id    
+  end
+  
+<span style='color:#004a43; '>&#xa0;&#xa0;# Validations</span>
+  
+  def not_owner
+     errors<span style='color:#808030; '>.</span>add<span style='color:#808030; '>(</span><span style='color:#800080; '>:</span>user_id<span style='color:#808030; '>,</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>User can not follow their own deal</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>if</span> self<span style='color:#808030; '>.</span>is_owner<span style='color:#800080; '>?</span>
+  end
+  
+end
+</pre></pre>
