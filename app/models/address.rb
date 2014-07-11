@@ -2,6 +2,8 @@ class Address < ActiveRecord::Base
 
   belongs_to :addressable, :polymorphic => true
 
+  belongs_to :deal
+
   before_create :default_name
   
   STATES=[['AK', 'AK'],['AL', 'AL'],['AR', 'AR'],['AZ', 'AZ'],['CA', 'CA'],['CO', 'CO'],['CT', 'CT'],['DC', 'DC'],['DE', 'DE'],['FL', 'FL'],

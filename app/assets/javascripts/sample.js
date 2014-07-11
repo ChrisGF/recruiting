@@ -26,3 +26,8 @@ function coreFunctions() {
 
 $(document).ready(coreFunctions);
 $(document).on('page:load', coreFunctions);
+
+function gotoAnchor(id) {
+  console.log("we are here")
+  $(document).scrollTop( $(id).offset().top );
+};
