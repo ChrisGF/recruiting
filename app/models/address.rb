@@ -26,4 +26,11 @@ class Address < ActiveRecord::Base
     self.name = "Primary" unless self.name
   end
 
+  # Only the states in this array will be available to the user when
+  # creating a deal.
+  #
+  def self.available_states; 
+    [['GA', 'GA']]
+  end
+
 end
