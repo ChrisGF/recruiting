@@ -33,4 +33,7 @@ Recruiting::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # rails-api gem needs a base for its secret key in order to start the server
+  config.secret_key_base = 'super_secret_test'
 end

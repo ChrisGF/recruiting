@@ -77,4 +77,7 @@ Recruiting::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # rails-api gem needs a base for its secret key in order to start the server
+  config.secret_key_base = 'super_secret_production'
 end
