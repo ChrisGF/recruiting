@@ -28,4 +28,7 @@ Recruiting::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  # rails-api gem needs a base for its secret key in order to start the server
+  config.secret_key_base = 'super_secret_development'
 end
