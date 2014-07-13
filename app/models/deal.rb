@@ -9,7 +9,7 @@ class Deal < ActiveRecord::Base
   
   monetize :amount_to_raise_cents
   
-  CLOSE_TIMELINE = ['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
+  CLOSE_TIMELINE = ['Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
   CAPITAL_TYPE =  ["Debt",  "Equity", "Both", "Flexible"]
   
   # RULES
@@ -93,14 +93,15 @@ class Deal < ActiveRecord::Base
   end
   
   # Nested Attributes Objects.. Automatically build if there is nothing there
-  def address
-    super || build_address
+  def invalid_address?
+    self.address.state != "GA"
   end
 
   def invalid_deal?
     ( INVALID_DATES.include?(self.close_timeline) ||
-      self.amount_to_raise > 250000 ||
-      INVALID_CAPITAL_TYPES.include?(self.capital_type) 
+      self.amount_to_raise > 200000 ||
+      INVALID_CAPITAL_TYPES.include?(self.capital_type) ||
+      self.invalid_address?
     )
   end
   
@@ -109,6 +110,22 @@ class Deal < ActiveRecord::Base
       self.state = "failed_submission"
     else
       self.state = "published" unless self.closed?
+    end
+  end
+
+  def follow(user_id)
+    unless Follower.exists?(self.id, user_id)
+      logger.debug "we are about to create the follower"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+      Follower.create(:deal_id => self.id, :user_id => user_id)
+    end
+  end
+
+  def unfollow(user_id)
+    if Follower.exists?(self.id, user_id)
+      follower = Follower.where(:deal_id => self.id, :user_id => user_id)
+      follower.each do |f|
+        f.delete
+      end
     end
   end
   

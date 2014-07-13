@@ -22,6 +22,21 @@
     - else
       .row
         .col-lg-12
+          .div.sort
+            SORT:
+            - if params[:sort] == "new"
+              %span.active
+                NEWEST 
+            - else 
+              %span 
+                = link_to("NEWEST", investments_path(:sort => "new")) 
+            | 
+            - if params[:sort] == "price"
+              %span.active
+                AMOUNT TO RAISE
+            - else
+              %span 
+                = link_to "AMOUNT TO RAISE", investments_path(:sort => "price")
           %table.new_deals
             - @published_offers.each do |deal|
               %tr.new-deal{id: "d#{deal.id}"}
@@ -37,13 +52,16 @@
                           .icon
                             %i.fa.fa-building.fa-2x
                         %td
-                          .title
-                            #{deal.name}
+                          %span.title
+                            #{deal.name}, #{deal.address.city}, #{deal.address.state}
                           .location
                             #{deal.short_description}
-
-                %td.title{width: "160px"}
-                  #{deal.address.city}, #{deal.address.state}
+                - if current_user and Follower.exists?(deal.id, current_user.id)
+                  %td.follow{width: "160px"}
+                    = link_to("UNFOLLOW", deal_unfollow_path(deal), :method => :post)
+                - else
+                  %td.follow{width: "160px"}
+                    = link_to("FOLLOW", deal_follow_path(deal), :method => :post)
 
                 %td.footer{width: "100px"}
                   %label.amount.blue.coming-soon="#{number_to_currency(deal.amount_to_raise, precision: 0)}"

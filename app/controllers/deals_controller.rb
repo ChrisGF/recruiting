@@ -65,6 +65,20 @@ class DealsController < InheritedResources::Base
     flash[:notice] = "Your deal has successfully been unpublished and will no longer appear on the public website"
     redirect_to deals_path
   end
+
+  def follow
+    @deal = Deal.find(params[:deal_id])
+    @deal.follow(current_user.id)
+    flash[:notice] = "You have followed the investement: " + @deal.name 
+    redirect_to investments_path
+  end
+
+  def unfollow
+    @deal = Deal.find(params[:deal_id])
+    @deal.unfollow(current_user.id)
+    flash[:notice] = "You have stopped following the investement: " + @deal.name 
+    redirect_to investments_path
+  end
   
   protected
     def permitted_params
