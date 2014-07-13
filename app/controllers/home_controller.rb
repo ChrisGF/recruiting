@@ -6,7 +6,11 @@ class HomeController < ApplicationController
   end
 
   def investments
-    @published_offers = Deal.where(:state => "published")
+  	if params[:sort] == "price"
+    	@published_offers = Deal.where(:state => "published").order("amount_to_raise_cents ASC")
+    else
+    	@published_offers = Deal.where(:state => "published").order("created_at DESC")
+    end
   end
 
   def developers

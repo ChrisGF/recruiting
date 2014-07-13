@@ -834,6 +834,15 @@ ul.padded_list {
     height: inherit;
     margin-top: 10px;
   }
+
+  .active {
+    color: #26a97c;
+  }
+
+  .sort {
+    float:right;
+    padding-bottom: 10px;
+  }
   
   .welcome-header {
     background-color: $color2;
@@ -938,6 +947,10 @@ table.new_deals {
           left: inherit;
           width: 48px;
         }
+      }
+
+      &.follow {
+        padding: 32px 0 0 43px;
       }
     }
     

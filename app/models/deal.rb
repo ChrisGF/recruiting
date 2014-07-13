@@ -112,5 +112,21 @@ class Deal < ActiveRecord::Base
       self.state = "published" unless self.closed?
     end
   end
+
+  def follow(user_id)
+    unless Follower.exists?(self.id, user_id)
+      logger.debug "we are about to create the follower"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+      Follower.create(:deal_id => self.id, :user_id => user_id)
+    end
+  end
+
+  def unfollow(user_id)
+    if Follower.exists?(self.id, user_id)
+      follower = Follower.where(:deal_id => self.id, :user_id => user_id)
+      follower.each do |f|
+        f.delete
+      end
+    end
+  end
   
 end

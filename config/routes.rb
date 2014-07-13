@@ -11,6 +11,8 @@ Recruiting::Application.routes.draw do
   resources(:deals) do
     match '/publish', to: 'deals#publish', :as => :publish, :via => [:post, :put]
     match '/unpublish', to: 'deals#unpublish', :as => :unpublish, :via => [:post, :put]
+    match '/follow', to: 'deals#follow', :as => :follow, :via => [:post, :put]
+    match '/unfollow', to: 'deals#unfollow', :as => :unfollow, :via => [:post, :put]
   end
 
   devise_scope :user do
