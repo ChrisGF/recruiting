@@ -11,9 +11,10 @@ class Deal < ActiveRecord::Base
   
   CLOSE_TIMELINE = ['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
   CAPITAL_TYPE =  ["Debt",  "Equity", "Both", "Flexible"]
+  VALID_US_STATES = ["GA"]
   
   # RULES
-  INVALID_DATES=['Jun 2014', 'Jul 2014', '']
+  INVALID_DATES=['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', '']
   INVALID_CAPITAL_TYPES=['Equity','Both','']
   
   before_save :validate_project
@@ -97,19 +98,35 @@ class Deal < ActiveRecord::Base
     super || build_address
   end
 
-  def invalid_deal?
-    ( INVALID_DATES.include?(self.close_timeline) ||
-      self.amount_to_raise > 250000 ||
-      INVALID_CAPITAL_TYPES.include?(self.capital_type) 
-    )
+  def invalid_deal
+    if INVALID_DATES.include?(self.close_timeline)
+      errors.add(:close_timeline, 'We can\'t accept deals with a close time before Oct 2014')
+      return true
+    elsif self.amount_to_raise > 200000
+      errors.add(:amount_to_raise, 'We can\'t accept deals looking to raise more than $200,000')
+      return true
+    elsif INVALID_CAPITAL_TYPES.include?(self.capital_type)
+      errors.add(:capital_type, 'Invalid capital type')
+      return true
+    elsif VALID_US_STATES.exclude?(self.state)
+      # self.state conflict, this doesn't work...
+      errors.add(:state, 'Your selected state\'s laws do not currently permit real estate crowd sourcing')
+      return true
+    end
+    
+    return false
   end
   
   def validate_project
-    if invalid_deal?
+    if invalid_deal
       self.state = "failed_submission"
     else
       self.state = "published" unless self.closed?
     end
+  end
+  
+  def self.return_published
+    return Deal.where("state = ?", 'published')
   end
   
 end

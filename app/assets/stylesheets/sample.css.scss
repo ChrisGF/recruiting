@@ -766,6 +766,11 @@ ul.padded_list {
     margin-bottom: 2px;
   }
   
+  .alert-error {
+	  background-color:$color2;
+	  color:$white;
+  }
+  
   &.no-padding .alert {
     margin-bottom: 0px;
   }

@@ -9,31 +9,36 @@
       .row-fluid
         .form-group
           = f.label :name, class: "control-label col-sm-2"
+          *
           .col-sm-8
             = f.text_field :name, class: "form-control"
         .form-group
           = f.label :email, class: "control-label col-sm-2"
+          *
           .col-sm-8
             = f.email_field :email, class: "form-control"
         .form-group
           = f.label :password, class: "control-label col-sm-2"
+          *
           .col-sm-8
             = f.password_field :password, class: "form-control"
             
         = f.fields_for :address do |ff|
           .form-group
             = ff.label :city, class: "control-label col-sm-2"
+            *
             .col-sm-8
               = ff.text_field :city, class: "form-control"
           .form-group
-            = ff.label :state, class: "control-label col-sm-2"
+            = f.label :state, class: "control-label col-sm-2"
+            *
             .col-sm-8
               = ff.select :state, us_states, { include_blank: "Please Select A State" }, { class: "form-control" }
 
     .col-lg-6
       = f.fields_for :developer_profile do |fp|
         .form-group
-          %label.control-label.col-sm-4{:for => "developer_profile_employment" }="Time Commitment"
+          %label.control-label.col-sm-4{:for => "developer_profile_employment" }="Time Commitment" + ' *'
           .col-sm-8
             = fp.select :employment, DeveloperProfile::EMPLOYMENT, { include_blank: "Please select your commitment" }, { class: "form-control" }
         .form-group
