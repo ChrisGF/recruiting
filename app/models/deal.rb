@@ -118,7 +118,7 @@ class Deal < ActiveRecord::Base
   end
   
   def validate_project
-    if invalid_deal
+    if invalid_deal?
       self.state = "failed_submission"
     else
       self.state = "published" unless self.closed?
