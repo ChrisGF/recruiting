@@ -26,3 +26,9 @@ function coreFunctions() {
 
 $(document).ready(coreFunctions);
 $(document).on('page:load', coreFunctions);
+
+ //---------------------------------------------------------------
+ //  scrollTo helper
+ function gotoAnchor(id) {
+  window.scrollTo(0, $(id).offset().top);
+ }
