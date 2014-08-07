@@ -9,13 +9,16 @@ class Deal < ActiveRecord::Base
   
   monetize :amount_to_raise_cents
   
-  CLOSE_TIMELINE = ['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
+  CLOSE_TIMELINE = ['Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
   CAPITAL_TYPE =  ["Debt",  "Equity", "Both", "Flexible"]
   
   # RULES
-  INVALID_DATES=['Jun 2014', 'Jul 2014', '']
+  INVALID_DATES=['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', '']
   INVALID_CAPITAL_TYPES=['Equity','Both','']
-  
+  VALID_DEAL_STATES= [['GA', 'GA']]
+
+  INVALID_DEAL_STATES= Address::STATES - VALID_DEAL_STATES
+
   before_save :validate_project
   
   state_machine :state, :initial => :new do
@@ -99,8 +102,9 @@ class Deal < ActiveRecord::Base
 
   def invalid_deal?
     ( INVALID_DATES.include?(self.close_timeline) ||
-      self.amount_to_raise > 250000 ||
-      INVALID_CAPITAL_TYPES.include?(self.capital_type) 
+      self.amount_to_raise > 200000 ||
+      INVALID_CAPITAL_TYPES.include?(self.capital_type) ||
+      INVALID_DEAL_STATES.include?(self.address.state)
     )
   end
   
