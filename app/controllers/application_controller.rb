@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
       return reroute if reroute.present?
       return stored_location if stored_location.present?
-      return developer_profile_path if resource.developer_profile.blank? || resource.developer_profile.started?
+      #return developer_profile_path if resource.developer_profile.blank? || resource.developer_profile.started?
       return "/developers/next-steps" if resource.deals.length < 1
       return deals_path
     else
