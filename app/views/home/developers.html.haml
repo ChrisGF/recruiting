@@ -1,3 +1,5 @@
+= set_header_tab("developers")
+
 %section.hero.developers
   .container-fluid
     .row
@@ -15,13 +17,13 @@
       .col-xs-12.col-sm-12.col-md-12.col-lg-12
         %ul.links
           %li
-            %a{onclick: "gotoAnchor('#why');"}="Why sign up?"
+            %a{onClick: "gotoAnchor('.why');"}="Why sign up?"
           %li
-            %a{onclick: "gotoAnchor('#why');"}="How it works?"
+            %a{onClick: "gotoAnchor('.how');"}="How it works?"
 
 %section.container-wrapper.why
   .container
-    %h1="WHY SIGN UP?"
+    %h1= "WHY SIGN UP?"
     .row
       .col-xs-12.col-sm-12.col-md-12.col-lg-8
         .callout

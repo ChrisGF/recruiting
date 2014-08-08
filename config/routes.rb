@@ -1,6 +1,6 @@
 Recruiting::Application.routes.draw do
   
-  resources :developer_profiles
+  
 
   match "/", to: "home#index", via: [:get]
   match "/investments", to: "home#investments", :as => :investments, via: [:get]
@@ -17,6 +17,10 @@ Recruiting::Application.routes.draw do
     match '/logout', to: 'auth/sessions#destroy', :as => :logout, :via => [:get, :post]
   end
   devise_for :users, :controllers => { :registrations => "auth/registrations" }
+
+  resources :users do
+    resources :developer_profiles
+  end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

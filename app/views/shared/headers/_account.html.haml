@@ -12,6 +12,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     .collapse.navbar-collapse{ id: "bs-example-navbar-collapse-1"}
       %ul.nav.navbar-nav.navbar-right
+        -unless current_user.developer_profile == nil
+          %li= link_to(current_user.name, user_developer_profile_path(current_user, current_user.developer_profile))
         %li{class: ((content_for :header_tab) == "instructions" ? "active" : "")}
           = link_to("Instructions", root_path)
         %li{class: ((content_for :header_tab) == "investments" ? "active" : "")}

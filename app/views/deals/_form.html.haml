@@ -21,7 +21,7 @@
         .form-group
           %label.control-label.col-lg-4="State"
           .col-lg-7
-            = ff.select :state, Address::STATES, { include_blank: "Please select a state" }, { class: "form-control required" }
+            = ff.select :state, Deal::VALID_DEAL_STATES, { include_blank: "Please select a state" }, { class: "form-control required" }
         .form-group
           %label.control-label.col-lg-4="Zipcode"
           .col-lg-7

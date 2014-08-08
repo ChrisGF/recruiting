@@ -30,9 +30,9 @@
         <td><%= developer_profile.how_response %></td>
         <td><%= developer_profile.why %></td>
         <td><%= developer_profile.state %></td>
-        <td><%= link_to 'Show', developer_profile %></td>
-        <td><%= link_to 'Edit', edit_developer_profile_path(developer_profile) %></td>
-        <td><%= link_to 'Destroy', developer_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_developer_profile_path(current_user, current_user.developer_profile ) %></td>
+        <td><%= link_to 'Edit', edit_user_developer_profile_path(current_user, current_user.developer_profile) %></td>
+        <td><%= link_to 'Destroy', user_developer_profile_path(current_user, current_user.developer_profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Developer profile', new_developer_profile_path %>
+<%= link_to 'New Developer profile', new_user_developer_profile_path %>

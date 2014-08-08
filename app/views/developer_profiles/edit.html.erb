@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @developer_profile %> |
-<%= link_to 'Back', developer_profiles_path %>
+<%= link_to 'Cancel', user_developer_profile_path(current_user, current_user.developer_profile) %>
