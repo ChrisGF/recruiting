@@ -45,5 +45,5 @@
   <%= @developer_profile.state %>
 </p>
 
-<%= link_to 'Edit', edit_developer_profile_path(@developer_profile) %> |
-<%= link_to 'Back', developer_profiles_path %>
+<%= link_to 'Edit', edit_user_developer_profile_path(current_user, current_user.developer_profile) %> |
+<%= link_to 'Back', user_developer_profiles_path %>
