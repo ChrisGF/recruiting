@@ -34,6 +34,24 @@ function coreFunctions() {
 		 window.location.hash = hash;
 	 });
  });
+ 
+ $('.follow').click(function(e) {
+	 e.preventDefault();
+	 
+	 var thisbtn = $(this);
+	 
+	 $.ajax({
+		 type:'POST',
+		 url:'/investments/follow',
+		 data:'deal_id=' + thisbtn.data('dealid'),
+		 beforeSend:function() {
+	 		 thisbtn.addClass('disabled');	
+		 },
+		 success:function() {
+			thisbtn.html('Following');
+		 }
+	 });
+ });
 }
 
 $(document).ready(coreFunctions);

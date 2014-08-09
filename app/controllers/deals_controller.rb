@@ -8,7 +8,9 @@ class DealsController < InheritedResources::Base
   
   def create
     @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
-    @deal.validate_project(params)
+    logger.info(@deal.short_description)
+    #@deal.usstate = params[:deal][:address_attributes][:state]
+    @deal.validate_project
     
     if @deal.state == "published"
       @deal.save

@@ -98,7 +98,8 @@ class Deal < ActiveRecord::Base
     super || build_address
   end
 
-  def invalid_deal
+  def invalid_deal?
+    #logger.info('US STATE: ' + self.usstate)
     if INVALID_DATES.include?(self.close_timeline)
       errors.add(:close_timeline, 'We can\'t accept deals with a close time before Oct 2014')
       return true
@@ -108,7 +109,7 @@ class Deal < ActiveRecord::Base
     elsif INVALID_CAPITAL_TYPES.include?(self.capital_type)
       errors.add(:capital_type, 'Invalid capital type')
       return true
-    elsif VALID_US_STATES.exclude?(self.state)
+    elsif VALID_US_STATES.exclude?(self.usstate)
       # self.state conflict, this doesn't work...
       errors.add(:state, 'Your selected state\'s laws do not currently permit real estate crowd sourcing')
       return true

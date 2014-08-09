@@ -4,6 +4,7 @@ Recruiting::Application.routes.draw do
 
   match "/", to: "home#index", via: [:get]
   match "/investments", to: "home#investments", :as => :investments, via: [:get]
+  match "/investments/follow", to: 'home#investments_follow', :as => :investments_follow, via: [:post]
   match "/developers", to: "home#developers", :as => :developers, via: [:get]
   match "/developers/next-steps", to: "home#next_steps", :as => :developers_next_steps, via: [:get]
   match '/accept_legal_message.js', to: 'deals#accept_legal_popup', :as => :accept_legal_popup, :via => [:get]

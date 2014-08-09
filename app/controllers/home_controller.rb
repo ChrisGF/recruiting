@@ -8,6 +8,11 @@ class HomeController < ApplicationController
   def investments
     @published_offers = Deal.return_published
   end
+  
+  def investments_follow
+    DealFollower.create(deal_id:params[:deal_id], user_id:current_user.id)
+    render nothing: true
+  end
 
   def developers
   end
