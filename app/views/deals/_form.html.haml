@@ -7,7 +7,7 @@
           Project Title
           %i.icon-question-sign
         .col-lg-7
-          = f.text_field :name, class: "form-control required", placeholder: "315 West Street Renovation", maxlength: 50, "data-counter" => "name_counter", "data-counter-max" => 50
+          = f.text_field :name, class: "form-control required gmaptrigger", placeholder: "315 West Street Renovation", maxlength: 50, "data-counter" => "name_counter", "data-counter-max" => 50
           %em
             %span{id:'name_counter'}
               #{(50 - (deal.name.present? ? deal.name.length : 0))} 
@@ -17,15 +17,15 @@
         .form-group
           %label.control-label.col-lg-4="City"
           .col-lg-7
-            = ff.text_field :city, class: "form-control required"
+            = ff.text_field :city, class: "form-control required gmaptrigger"
         .form-group
           %label.control-label.col-lg-4="State"
           .col-lg-7
-            = ff.select :state, Address::STATES, { include_blank: "Please select a state" }, { class: "form-control required" }
+            = ff.select :state, Address::STATES, { include_blank: "Please select a state" }, { class: "form-control required gmaptrigger" }
         .form-group
           %label.control-label.col-lg-4="Zipcode"
           .col-lg-7
-            = ff.text_field :zipcode, class: "form-control required"
+            = ff.text_field :zipcode, class: "form-control required gmaptrigger"
 
       .form-group
         %label.control-label.col-lg-4{"data-original-title" => "Project Summary", "data-content" => "This is a descriptive and concise summary of the property that you will use to attract investors.", "data-placement" => "top", "data-trigger" => "hover", rel: "popover"}
@@ -59,6 +59,8 @@
           = f.select :close_timeline, Deal::CLOSE_TIMELINE, { include_blank: "Please select closing timeframe" }, { class: "form-control required" }
           
           
+  .row
+    #gmap.col-lg-12
 
   .row
     .col-lg-12.text-center
