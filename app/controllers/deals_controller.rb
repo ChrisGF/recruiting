@@ -8,11 +8,7 @@ class DealsController < InheritedResources::Base
   
   def create
     @deal = Deal.new(permitted_params.merge({ user_id: current_user.id}))
-    #params[:deal][:address_attributes][:state]
-    logger.info('USSTATE ' + params[:deal][:address_attributes][:state].to_s)
     @deal.us_state = params[:deal][:address_attributes][:state].to_s
-    #@usstate = params[:deal][:address_attributes][:state]
-    #@deal.usstate = params[:deal][:address_attributes][:state]
     @deal.validate_project
     
     if @deal.state == "published"
@@ -31,6 +27,7 @@ class DealsController < InheritedResources::Base
 
   def update
     @deal = current_user.deals.where(:id => params[:id]).first || Deal.new(permitted_params.merge({user_id: current_user.id }))
+    @deal.us_state = params[:deal][:address_attributes][:state].to_s
 
     @deal.assign_attributes(permitted_params)
     @deal.validate_project
