@@ -2,6 +2,7 @@ class Deal < ActiveRecord::Base
   include Groundfloor::Addressable
   
   attr_accessor :us_state
+  cattr_accessor :trigger_follow
   
   belongs_to :user
   
@@ -121,7 +122,7 @@ class Deal < ActiveRecord::Base
   
   def validate_project
     if invalid_deal?
-      self.state = "failed_submission"
+      self.state = "failed_submission" unless self.trigger_follow
     else
       self.state = "published" unless self.closed?
     end
@@ -130,5 +131,6 @@ class Deal < ActiveRecord::Base
   def self.return_published
     return Deal.where("state = ?", 'published')
   end
+  
   
 end

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
   
   def investments_follow
-    DealFollower.create(deal_id:params[:deal_id], user_id:current_user.id)
+    DealFollower.follow(params[:deal_id], current_user.id)
     render nothing: true
   end
 
