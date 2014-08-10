@@ -79,8 +79,7 @@ function gmapInit(lat, lng) {
 	var map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
 	var marker = new google.maps.Marker({
 		position: myLatlng, 
-		map: map,
-		title: 'Test'
+		map: map
 	});
 }
 //google.maps.event.addDomListener(window, 'load', gmapInit);

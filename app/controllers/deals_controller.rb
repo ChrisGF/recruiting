@@ -7,8 +7,11 @@ class DealsController < InheritedResources::Base
   end
   
   def create
-    @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
-    logger.info(@deal.short_description)
+    @deal = Deal.new(permitted_params.merge({ user_id: current_user.id}))
+    #params[:deal][:address_attributes][:state]
+    logger.info('USSTATE ' + params[:deal][:address_attributes][:state].to_s)
+    @deal.us_state = params[:deal][:address_attributes][:state].to_s
+    #@usstate = params[:deal][:address_attributes][:state]
     #@deal.usstate = params[:deal][:address_attributes][:state]
     @deal.validate_project
     
