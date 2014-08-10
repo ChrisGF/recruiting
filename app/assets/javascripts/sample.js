@@ -52,7 +52,38 @@ function coreFunctions() {
 		 }
 	 });
  });
+ 
+ $('#deal_form .gmaptrigger').change(function() {
+	 var address = $('#deal_form input[name="deal[name]"]').val();
+	 var city = $('#deal_form input[name="deal[address_attributes][city]"]').val();
+	 var state = $('#deal_form select[name="deal[address_attributes][state]"]').val();
+	 var zip = $('#deal_form input[name="deal[address_attributes][zipcode]"]').val();
+	 if (address && city && state && zip) {
+		 // get latitude/longitude for input address
+	 	 $.get('https://maps.googleapis.com/maps/api/geocode/json', 'address=' + address + ',' + city + ',' + state + ',' + zip, function(d) {
+			 var lat = d.results[0].geometry.location.lat;
+			 var lng = d.results[0].geometry.location.lng;
+			 $('#gmap').css('height', '500px');
+			 gmapInit(lat, lng);
+	 	 });
+	 }
+ });
 }
+
+function gmapInit(lat, lng) {
+	var myLatlng = new google.maps.LatLng(lat,lng);
+	var mapOptions = {
+		center: myLatlng,
+		zoom: 15
+	};
+	var map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
+	var marker = new google.maps.Marker({
+		position: myLatlng, 
+		map: map,
+		title: 'Test'
+	});
+}
+//google.maps.event.addDomListener(window, 'load', gmapInit);
 
 $(document).ready(coreFunctions);
 $(document).on('page:load', coreFunctions);
