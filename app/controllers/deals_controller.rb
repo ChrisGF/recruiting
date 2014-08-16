@@ -11,7 +11,7 @@ class DealsController < InheritedResources::Base
     @deal.us_state = params[:deal][:address_attributes][:state].to_s
     @deal.validate_project
     
-    if @deal.state == "published"
+    if @deal.published?
       @deal.save
       flash.now[:success] = "Your proposal was created."
       redirect_to deals_path
