@@ -1,3 +1,5 @@
+- set_header_tab("developers")
+
 %section.hero.developers
   .container-fluid
     .row
@@ -15,13 +17,14 @@
       .col-xs-12.col-sm-12.col-md-12.col-lg-12
         %ul.links
           %li
-            %a{onclick: "gotoAnchor('#why');"}="Why sign up?"
+            = link_to('Why sign up?', '#whysignup', {class:'scrollto'})
           %li
-            %a{onclick: "gotoAnchor('#why');"}="How it works?"
+            = link_to('How it works?', '#howitworks', {class:'scrollto'})
 
 %section.container-wrapper.why
   .container
-    %h1="WHY SIGN UP?"
+    = content_tag(:a, '', :name => 'whysignup')
+    %h1#whysignup="WHY SIGN UP?"
     .row
       .col-xs-12.col-sm-12.col-md-12.col-lg-8
         .callout
@@ -51,7 +54,8 @@
   .container
     .row
       .col-xs-12.col-sm-12.col-md-12.col-lg-7
-        %h1="HOW IT WORKS"
+        = content_tag(:a, '', :name => 'howitworks')
+        %h1#howitworks="HOW IT WORKS"
         .callout
           You bring the investment opportunities and the know-how to make them happen.  Combine your network with ours so that your project gains popularity and receives funding.  GROUNDFLOOR takes care of the rest.
         %table.steps

@@ -12,28 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :employment %><br>
-    <%= f.text_field :employment %>
+	<%= f.select :employment, DeveloperProfile::EMPLOYMENT, { include_blank: "select something" }, { class: 'form-control' } %>
   </div>
   <div class="field">
     <%= f.label :experience %><br>
-    <%= f.text_field :experience %>
+    <%= f.select :experience, DeveloperProfile::EXPERIENCE, { include_blank: "select something" }, { class: 'form-control' } %>
   </div>
   <div class="field">
     <%= f.label :yearly_projects %><br>
-    <%= f.text_field :yearly_projects %>
+    <%= f.select :yearly_projects, DeveloperProfile::PROJECTS_PER_YEAR, { include_blank: "select something" }, { class: 'form-control' } %>
   </div>
   <div class="field">
     <%= f.label :typical_project_size %><br>
-    <%= f.text_field :typical_project_size %>
+    <%= f.select :typical_project_size, DeveloperProfile::TYPICAL_PROJECT_SIZE, { include_blank: "select something" }, { class: 'form-control' } %>
   </div>
   <div class="field">
     <%= f.label :how_did_you_hear %><br>
-    <%= f.text_field :how_did_you_hear %>
+    <%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: "select something" }, { class: 'form-control' } %>
   </div>
   <div class="field">
     <%= f.label :how_response %><br>
@@ -41,11 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :why %><br>
-    <%= f.text_field :why %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= f.text_area :why %>
   </div>
   <div class="actions">
     <%= f.submit %>

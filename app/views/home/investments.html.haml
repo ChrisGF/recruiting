@@ -24,6 +24,7 @@
         .col-lg-12
           %table.new_deals
             - @published_offers.each do |deal|
+              - is_following = DealFollower.where(deal_id:deal.id, user_id:current_user.id).present?
               %tr.new-deal{id: "d#{deal.id}"}
                 %td.placeholder-cover-asset{width: "100px"}
                   No Photo
@@ -41,6 +42,7 @@
                             #{deal.name}
                           .location
                             #{deal.short_description}
+                          =link_to(is_following ? 'Following' : 'Follow', '', class:'follow btn btn-primary btn-sm' + (is_following ? ' disabled' : ''), 'data-dealid' => deal.id)
 
                 %td.title{width: "160px"}
                   #{deal.address.city}, #{deal.address.state}

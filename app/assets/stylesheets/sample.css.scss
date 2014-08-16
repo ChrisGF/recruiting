@@ -766,6 +766,11 @@ ul.padded_list {
     margin-bottom: 2px;
   }
   
+  .alert-error {
+	  background-color:$color2;
+	  color:$white;
+  }
+  
   &.no-padding .alert {
     margin-bottom: 0px;
   }
@@ -1034,4 +1039,9 @@ table.new_deals {
   .actions {
     background-color: $color1;
   }
+}
+
+.follow {
+	margin-top:5px;
+	margin-bottom:5px;
 }

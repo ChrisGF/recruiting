@@ -7,16 +7,17 @@ class DealsController < InheritedResources::Base
   end
   
   def create
-    @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
-    create! do |success, failure|
-      success.html { 
-        flash.now[:success] = "Your proposal was created."
-        redirect_to deals_path
-      }
-      failure.html { 
-        flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
-        render :new
-      }
+    @deal = Deal.new(permitted_params.merge({ user_id: current_user.id}))
+    @deal.us_state = params[:deal][:address_attributes][:state].to_s
+    @deal.validate_project
+    
+    if @deal.published?
+      @deal.save
+      flash.now[:success] = "Your proposal was created."
+      redirect_to deals_path
+    else
+      flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
+      render :new
     end
   end
 
@@ -26,9 +27,11 @@ class DealsController < InheritedResources::Base
 
   def update
     @deal = current_user.deals.where(:id => params[:id]).first || Deal.new(permitted_params.merge({user_id: current_user.id }))
+    @deal.us_state = params[:deal][:address_attributes][:state].to_s
 
     @deal.assign_attributes(permitted_params)
     @deal.validate_project
+  
     if @deal.save
       flash[:success] = "Your proposal was updated."
       redirect_to deals_path
