@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def investments
-    @published_offers = Deal.all
+    @published_offers = Deal.published
   end
 
   def developers
