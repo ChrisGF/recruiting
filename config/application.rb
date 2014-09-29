@@ -19,5 +19,6 @@ module Recruiting
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.secret_key_base = 'f875ce373ff39ffe11eb207bd647a21c6618b99f64b737e41ad5149b701dfa61700dbb3fb5d0397f9f0d6df564566c344a5ab063a1db928402bc97a8568d81eb'
   end
 end
