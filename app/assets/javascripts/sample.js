@@ -22,6 +22,21 @@ function coreFunctions() {
 
  $("[rel='tooltip']").tooltip();
  $("[rel='popover']").popover();
+
+  function gotoAnchor(el_id){
+      var el = $(el_id);
+      $('html,body').animate({scrollTop: el.offset().top},'slow');
+  }
+
+  $(function() {
+      var $imageNameLabel = $('#image-name-label');
+      var $imageFileField = $('#image-file-field');
+
+      $imageFileField.on('change', function() {
+          var fileName = $(this).val();
+          $imageNameLabel.text(fileName);
+      });
+  });
 }
 
 $(document).ready(coreFunctions);

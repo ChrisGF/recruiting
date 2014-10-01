@@ -10,7 +10,7 @@
         %h1="YOUR PROJECTS"
       .col-lg-3
         = link_to("ADD A PROJECT", new_deal_path, class: "btn btn-primary btn-lg")
-  
+
     %br
     - @deals.in_groups_of(2) do |grouped_deals|
       .row
@@ -27,18 +27,21 @@
                   .row
                     .col-lg-4
                       .placeholder-cover-asset
-                        %span
-                          No Photo
-                          %br
-                          Available
-                          %br
-                          %i.fa.fa-building.fa-2x
-                    
+                        - if deal.image?
+                          = image_tag(deal.image.thumb.url)
+                        - else
+                          %span
+                            No Photo
+                            %br
+                            Available
+                            %br
+                            %i.fa.fa-building.fa-2x
+
                     .col-lg-8
                       .row
                         .col-lg-6
                           %label.address
-                            #{(deal.address.present? ? deal.address.city : (local_assigns[:show_defaults].present? ? "City" : ""))}, 
+                            #{(deal.address.present? ? deal.address.city : (local_assigns[:show_defaults].present? ? "City" : ""))},
                             #{(deal.address.present? ? deal.address.state : (local_assigns[:show_defaults].present? ? "State" : ""))}
                         .col-lg-6
                           .status
@@ -51,10 +54,10 @@
                                   %span.good="#{deal.state_name.titleize}"
                               - else
                                 %span.bad="On File"
-                            - else 
+                            - else
                               %span
                                 #{(local_assigns[:show_defaults].present? ? "N/A" : "")}
-                      
+
                       .row
                         .col-lg-12
                           %p
@@ -64,15 +67,15 @@
                               - if deal.is_published?
                                 %li
                                   =link_to("Unpublish", deal_unpublish_path(deal), :method => :post)
-                              - else 
+                              - else
                                 %li
                                   =link_to("Publish", deal_publish_path(deal), :method => :post)
-                
+
                             %li
                               =link_to("Edit", edit_deal_path(deal))
                             %li
                               =link_to("Delete", deal_path(deal), :method => :DELETE, :confirm => "Are you sure you want to remove this project?")
-              
+
                 .card-footer
                   .row
                     .col-lg-6.amount_to_raise.border

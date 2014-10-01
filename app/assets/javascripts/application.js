@@ -15,9 +15,3 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-
-
-function gotoAnchor(el_id){
-    var el = $(el_id);
-    $('html,body').animate({scrollTop: el.offset().top},'slow');
-}

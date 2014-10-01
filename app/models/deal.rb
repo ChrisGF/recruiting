@@ -1,5 +1,6 @@
 class Deal < ActiveRecord::Base
   include Groundfloor::Addressable
+  mount_uploader :image, ImageUploader
 
   belongs_to :user
 

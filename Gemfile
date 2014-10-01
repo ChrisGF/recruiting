@@ -33,6 +33,8 @@ gem 'money-rails'
 gem 'monetize'
 gem "google-webfonts-rails"
 gem "font-awesome-rails"
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -51,5 +53,5 @@ group :development, :test do
   gem 'railroady'
   gem "rails_best_practices"
   gem "awesome_print"
-  
+
 end
