@@ -125,6 +125,8 @@ GEM
     formatador (0.2.4)
     formtastic (2.3.0.rc3)
       actionpack (>= 3.0)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     google-webfonts-rails (0.0.4)
       activesupport (> 3.2.0, < 5.0)
     guard (2.6.1)
@@ -273,6 +275,8 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.5.0)
+    socialization (1.1.0)
+      activerecord
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -325,6 +329,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   formtastic
+  friendly_id
   google-webfonts-rails
   guard-rspec
   haml
@@ -349,6 +354,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   seedbank
   simplecov
+  socialization
   state_machine
   therubyracer
   thin

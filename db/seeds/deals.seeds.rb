@@ -1,41 +1,41 @@
 ADDRESSES=[
   { address1: "Main Street",
-    city: "Atlanta", 
-    state: "NY",
+    city: "Atlanta",
+    state: "GA",
     zipcode: 11123
   }, {
     address1: "Fayetteville Street",
-    city: "Raleigh", 
-    state: "NC",
+    city: "Raleigh",
+    state: "GA",
     zipcode: 23445
   }, {
     address1: "Bull Durham Drive",
-    city: "Durham", 
-    state: "NC",
+    city: "Durham",
+    state: "GA",
     zipcode: 54332
   }, {
     address1: "Apple Grove Dr",
-    city: "Chappel Hill", 
-    state: "NC",
+    city: "Chappel Hill",
+    state: "GA",
     zipcode: 12343
   }, {
     address1: "Landsdown Street",
-    city: "Boston", 
-    state: "MA",
+    city: "Boston",
+    state: "GA",
     zipcode: 42412
   }, {
     address1: "Orchard Park Rd",
-    city: "Buffalo", 
-    state: "NY",
+    city: "Buffalo",
+    state: "GA",
     zipcode: 12321
   }, {
     address1: "Spring Hill Lane",
-    city: "Syracuse", 
-    state: "NY",
+    city: "Syracuse",
+    state: "GA",
     zipcode: 76453
   }
-]              
-              
+]
+
 after :users do
   CLOSE_TIMELINE = ['Jun 2014', 'Jul 2014', 'Aug 2014']
   DESCRIPTIONS = ["This beautiful 3 bedroom, 2 bath, one-story 2000 square-foot house is located on one and a half acres down a quiet country road with a surrounding front and back yard including a back deck perfect for BBQs and a nice garden in front.",
@@ -50,12 +50,12 @@ after :users do
     "There is plenty of storage on the upper as well as the lower level. Included also are the washer and dryer, and water softener. The high-efficiency furnace, central air, gas hot water heater (quick recovery), space guard air cleaner.",
     "All of the interior of this house is like new, with beautifully finished woodwork and newly refinished hardwood floors. There is carpeting in the bedrooms and hallway, laid over the refinished hardwood floors."
   ]
-  
-  
+
+
   (0..10).each { |index|
     address = ADDRESSES.sample
     name = "#{rand(6000)} #{address[:address1]}"
-    
+
     deal = Deal.where(name: name).first_or_initialize
 
     if deal.new_record?

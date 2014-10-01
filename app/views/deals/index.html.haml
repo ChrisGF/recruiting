@@ -26,10 +26,11 @@
                 .card
                   .row
                     .col-lg-4
-                      .placeholder-cover-asset
-                        - if deal.image?
+                      - if deal.image?
+                        .deal_thumb
                           = image_tag(deal.image.thumb.url)
-                        - else
+                      - else
+                        .placeholder-cover-asset
                           %span
                             No Photo
                             %br
@@ -89,4 +90,84 @@
       .row
         .col-lg-12.text-center
           =link_to("ADD A PROJECT", new_deal_path, class:"btn btn-primary btn-large")
+    %br
+%section.container-wrapper.odd.last
+  .container.dashboard
+    .row.headline
+      .col-lg-9
+        %h2="PROJECTS I'M FOLLOWING"
+    %br
+    - if @followees.length > 0
+      - @followees.in_groups_of(2) do |grouped_deals|
+        .row
+          - grouped_deals.each do |deal|
+            - if deal.present?
+              .col-lg-6
+                .deal
+                  %header
+                    %span.icon
+                      %i.fa.fa-building.fa-2x
+                    .title
+                      #{(truncate(deal.name.present? ? deal.name : (local_assigns[:show_defaults].present? ? "Property Name" : ""), length: 40))}
+                  .card
+                    .row
+                      .col-lg-4
+                        .placeholder-cover-asset
+                          - if deal.image?
+                            = image_tag(deal.image.thumb.url)
+                          - else
+                            %span
+                              No Photo
+                              %br
+                              Available
+                              %br
+                              %i.fa.fa-building.fa-2x
+
+                      .col-lg-8
+                        .row
+                          .col-lg-6
+                            %label.address
+                              #{(deal.address.present? ? deal.address.city : (local_assigns[:show_defaults].present? ? "City" : ""))},
+                              #{(deal.address.present? ? deal.address.state : (local_assigns[:show_defaults].present? ? "State" : ""))}
+                          .col-lg-6
+                            .status
+                              %label="Status:"
+                              - if deal.state.present?
+                                - if deal.acceptable?
+                                  - if deal.unpublished?
+                                    %span.good="Qualified"
+                                  - else
+                                    %span.good="#{deal.state_name.titleize}"
+                                - else
+                                  %span.bad="On File"
+                              - else
+                                %span
+                                  #{(local_assigns[:show_defaults].present? ? "N/A" : "")}
+
+                        .row
+                          .col-lg-12
+                            %p
+                              #{deal.short_description}
+                            %ul.actions
+                              - if deal.belongs_to_current_user?(current_user) && deal.acceptable?  && (! deal.is_pending_approval?)
+                                - if deal.is_published?
+                                  %li
+                                    =link_to("Unpublish", deal_unpublish_path(deal), :method => :post)
+                                - else
+                                  %li
+                                    =link_to("Publish", deal_publish_path(deal), :method => :post)
+                              - if deal.belongs_to_current_user?(current_user)
+                                %li
+                                  =link_to("Edit", edit_deal_path(deal))
+                                %li
+                                  =link_to("Delete", deal_path(deal), :method => :DELETE, :confirm => "Are you sure you want to remove this project?")
+
+                  .card-footer
+                    .row
+                      .col-lg-6.amount_to_raise.border
+                        #{(deal.amount_to_raise.present? ? number_to_currency(deal.amount_to_raise.dollars, precision: 0) : (local_assigns[:show_defaults].present? ? "N/A" : ""))}
+                        %label="amount"
+                      .col-lg-6.close-timeline
+                        #{(deal.close_timeline.present? ? deal.close_timeline : (local_assigns[:show_defaults].present? ? "N/A" : ""))}
+                        %label="close"
 

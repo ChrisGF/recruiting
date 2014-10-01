@@ -1,6 +1,9 @@
 class Deal < ActiveRecord::Base
   include Groundfloor::Addressable
   mount_uploader :image, ImageUploader
+  acts_as_followable
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
 
   belongs_to :user
 
@@ -112,6 +115,10 @@ class Deal < ActiveRecord::Base
     else
       self.state = "published" unless self.closed?
     end
+  end
+
+  def belongs_to_current_user?(user)
+    user.id == self.user_id
   end
 
 end

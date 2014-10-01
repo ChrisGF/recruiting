@@ -2,19 +2,19 @@
 
 .errors.no-padding
   = display_flash_messages(flash)
-  
+
 %section.container-wrapper.odd.public-investments.first
   .container
     .row
       .col-lg-12.legal-highlight
         %p.text-center
-          Information on this page is not an offer or a solicitation to sell or purchase securities. Clicking "Follow" expresses a desire to learn more about a particular real estate project, developed by a third party independent to us. Statements on this page are for informational purposes only. 
-          
-          
+          Information on this page is not an offer or a solicitation to sell or purchase securities. Clicking "Follow" expresses a desire to learn more about a particular real estate project, developed by a third party independent to us. Statements on this page are for informational purposes only.
+
+
     .row.padded
       .span12
         %legend="Sample Investment Opportunities"
-          
+
     - if @published_offers.length < 1
       .row
         .col-lg-12.text-center
@@ -25,10 +25,14 @@
           %table.new_deals
             - @published_offers.each do |deal|
               %tr.new-deal{id: "d#{deal.id}"}
-                %td.placeholder-cover-asset{width: "100px"}
-                  No Photo
-                  %br
-                  Available
+                - if deal.image?
+                  %td{width: "100px"}
+                    = image_tag(deal.image.thumb.url)
+                - else
+                  %td.placeholder-cover-asset{width: "100px"}
+                    No Photo
+                    %br
+                    Available
                 %td
                   .summary
                     %table
@@ -44,7 +48,18 @@
 
                 %td.title{width: "160px"}
                   #{deal.address.city}, #{deal.address.state}
-
+                %td.follow{width: "25px"}
+                  - if current_user
+                    - if current_user.follows?(deal)
+                      - if deal.friendly_id
+                        = button_to "Unfollow", {controller: :deals, action: :unfollow, id: deal.friendly_id}, {class: "btn btn-warning"}
+                      - else
+                        = button_to "Unfollow", {controller: :deals, action: :unfollow, id: deal.id, friendly: false}, {class: "btn btn-warning"}
+                    - else
+                      - if deal.friendly_id
+                        = button_to "Follow", {controller: :deals, action: :follow, id: deal.friendly_id}, {class: "btn btn-primary"}
+                      - else
+                        = button_to "Follow", {controller: :deals, action: :follow, id: deal.id, friendly: false}, {class: "btn btn-primary"}
                 %td.footer{width: "100px"}
                   %label.amount.blue.coming-soon="#{number_to_currency(deal.amount_to_raise, precision: 0)}"
                   %em

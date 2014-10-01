@@ -647,6 +647,21 @@ ul.padded_list {
       }
     }
 
+    .deal_thumb {
+      background-color: white;
+      vertical-align: middle;
+      height: 100%;
+      text-align:center;
+      text-align: center;
+
+      span {
+        position: relative;
+        font-size: 24px;
+        line-height: 30px;
+        top: 35%;
+      }
+    }
+
     header {
       background-color: $color2;
 
@@ -943,6 +958,11 @@ table.new_deals {
         padding-left: 10px;
       }
 
+      &.follow {
+        vertical-align: middle;
+        padding-left: 10px;
+      }
+
       &.placeholder-cover-asset {
         background-color: $color2;
         vertical-align: middle;
@@ -1003,6 +1023,11 @@ table.new_deals {
     .title {
       font-size: 20px;
       padding-bottom: 4px;
+    }
+    .follow {
+      font-size: 16px;
+      padding-bottom: 4px;
+      padding-right: 4px;
     }
     .summary {
       float: left;

@@ -35,6 +35,8 @@ gem "google-webfonts-rails"
 gem "font-awesome-rails"
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'socialization'
+gem 'friendly_id'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
