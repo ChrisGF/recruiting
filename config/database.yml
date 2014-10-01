@@ -3,10 +3,10 @@ common: &common
   encoding: unicode
   username: <%= Figaro.env.DBUSER %>
   password: <%= Figaro.env.DBPASS %>
-  
+
 development:
   <<: *common
-  database: recruiting_app_developement
+  database: recruiting_app_development
   #database: groundfloor_restore
   port: 5432
   host: localhost

@@ -17,7 +17,7 @@ body { padding-top: 60px; }
   -o-transition: all .3s ease;
   transition: all .3s ease;
   -webkit-font-smoothing: antialiased;
-  
+
   i.icon-twitter {
     display: inline-block;
     text-align: center;
@@ -65,13 +65,13 @@ body { padding-top: 60px; }
 }
 
 //---------------------------------------------------------------
-// Main CSS for wrapping sections 
+// Main CSS for wrapping sections
 //---------------------------------------------------------------
 section.container-wrapper {
   background-color: $white;
   margin: 0px;
   padding: 60px 0px;
-  
+
   .padded {
     margin-top: 40px;
   }
@@ -90,7 +90,7 @@ section.container-wrapper {
     color: $white;
     border-top: 1px solid $navbar-default-color;
     border-bottom: 1px solid $navbar-default-color;
-  
+
     .callout {
       color: $white;
     }
@@ -116,7 +116,7 @@ section.container-wrapper {
     ul {
       font-size: .9em;
     }
-    
+
     .entry-border {
       border-left: 1px solid $white;
     }
@@ -127,11 +127,11 @@ section.container-wrapper {
     color: $white;
     border-top: 1px solid $navbar-default-color;
     border-bottom: 1px solid $navbar-default-color;
-    
+
     &.no-border {
       border: none;
     }
-  
+
     .callout {
       color: $white;
     }
@@ -171,7 +171,7 @@ section.container-wrapper {
       margin: 5px 0px;
     }
   }
-  
+
   &.gift {
     h1 {
       margin-bottom: 40px;
@@ -191,21 +191,21 @@ section.container-wrapper {
 //---------------------------------------------------------------
 .hero {
   background-color: $color1;
-  background: asset-url('backgrounds/bgnd-darkwood.jpg') no-repeat center center; 
+  background: asset-url('backgrounds/bgnd-darkwood.jpg') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 400px;
   color: $white;
-  
+
   h1.title:first-child { margin-top: 60px; }
   h1.title {
     line-height: 40px;
     font-size: 3.5em;
     line-height: 60px;
   }
-  
+
   .subtitle {
     font-size: 24px;
     margin-top: 0px;
@@ -216,35 +216,35 @@ section.container-wrapper {
   a {
     margin-top: 40px;
     font-weight: normal;
-    
+
     &.last {
       margin-bottom: 40px;
     }
   }
-  
+
   img.tool {
     right: 40px;
     top: 80px;
-    
+
     &.level {
       top: 0px;
       right: 60px;
     }
   }
-  
+
   &.next-steps {
     height: inherit;
     padding-top: 20px;
     color: $white;
     background-color: $color2;
     background-image: none;
-  
+
     a,
     a:hover {
       color: #ddd;
       cursor: pointer;
     }
-  
+
     p {
       margin-top: 40px;
       color: $white;
@@ -263,7 +263,7 @@ section.container-wrapper {
       vertical-align: bottom;
     }
   }
-  
+
   button {
     width: 200px;
     font-family: $headings-font-family;
@@ -271,7 +271,7 @@ section.container-wrapper {
     font-weight: 300;
     margin: 20px 0px;
   }
-  
+
 }
 
 //---------------------------------------------------------------
@@ -282,27 +282,27 @@ section.container-wrapper {
   padding: 8px 0px 0px 0px;
   margin: 0px;
   height: inherit;
-  
+
   &.social-actions {
     min-height: inherit;
   }
-  
+
   .row,
   .row {
     margin: 0px;
   }
-  
+
   label {
     padding-right: 10px;
     position: relative;
     bottom: 12px;
     display: inline-block;
   }
-  
+
   ul.social_actions {
     display: inline-block;
   }
-  
+
   ul.links {
     width: inherit;
     list-style: none;
@@ -310,14 +310,14 @@ section.container-wrapper {
     padding: 0px;
     font-size: 16px;
     margin-top: 20px;
-  
+
     li:first-child { padding-left: 0px; }
     li:last-child { padding-right: 0px; border: none;}
     li {
       float: left;
       padding: 0px 10px;
       border-right: 1px solid $gray-light;
-    
+
       a,
       a:hover {
         font-size: 18px;
@@ -335,7 +335,7 @@ footer {
   background-color: $color1;
   clear: both;
   color: $white;
-  
+
 
   .logo {
     padding: 20px 0px 10px 0px;
@@ -362,12 +362,12 @@ footer {
       font-size:0.85em;
     }
   }
-  
+
   ul {
     margin: 5px 0px 0px 0px;
     list-style: none;
   }
-  
+
   label {
     margin-top: 20px;
     color: $white;
@@ -387,7 +387,7 @@ footer {
   .border {
     border-left: 1px solid $gray
   }
-  
+
   ul {
     padding-left: 0px;
   }
@@ -432,7 +432,7 @@ p {
   font-size: .9em;
   color: $gray-medium;
   margin-top: 20px;
-  
+
 }
 
 figcaption {
@@ -447,10 +447,10 @@ figcaption {
 
 table.steps {
   color: $gray;
-  
+
   tr {
     margin-bottom: 10px;
-    
+
     td:first-child {
       width: 40px;
       text-align: center;
@@ -459,13 +459,13 @@ table.steps {
       padding-bottom: 20px;
       vertical-align: top;
       min-height: 40px;
-    
+
       h4,p {
         margin: 2px;
       }
     }
   }
-  
+
   .criteria {
     margin-top: 20px;
     background-color: $offwhite;
@@ -474,8 +474,8 @@ table.steps {
       font-size: 20px;
       color: #000;
     }
-    td:first-child { 
-      width: 110px; 
+    td:first-child {
+      width: 110px;
       padding-right: 20px;
     }
     td {
@@ -498,17 +498,17 @@ label.icon {
   @include border-radius(50%);
   color: $white;
 
-  
+
   span {
     position: relative;
     top: 4px;
   }
-  
+
   i {
     position: relative;
     top: 4px;
   }
-  
+
   &.good {
     background-color: $color4;
   }
@@ -516,10 +516,10 @@ label.icon {
   &.bad {
     background-color: $color3;
   }
-  
+
   &.maybe {
     background-color: $yellow;
-    
+
     i {
       top: 5px;
       left: 1px;
@@ -544,10 +544,10 @@ span.link {
   color: $color2;
   font-size: 12px;
   cursor: pointer;
-  
+
   &.inline {
     color: inherit;
-    
+
     a {
       color: inherit;
       text-decoration: underline;
@@ -575,12 +575,12 @@ ul.padded_list {
   @include border-radius(0px);
   box-shadow: none;
   padding: 0px;
-  
+
   legend {
     color: $gray-medium;
     border: none;
   }
-  
+
   p:first-child {
     margin-top: 0px;
   }
@@ -588,6 +588,26 @@ ul.padded_list {
 
 .btn {
   @include border-radius(0px);
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }
 
 //---------------------------------------------------------
@@ -606,11 +626,11 @@ ul.padded_list {
       margin-top: 10px;
     }
   }
-  
+
   .deal {
     background-color: $white;
     margin-bottom: 20px;
-    
+
     .placeholder-cover-asset {
       background-color: $color2;
       vertical-align: middle;
@@ -626,10 +646,25 @@ ul.padded_list {
         top: 35%;
       }
     }
-    
+
+    .deal_thumb {
+      background-color: white;
+      vertical-align: middle;
+      height: 100%;
+      text-align:center;
+      text-align: center;
+
+      span {
+        position: relative;
+        font-size: 24px;
+        line-height: 30px;
+        top: 35%;
+      }
+    }
+
     header {
       background-color: $color2;
-      
+
       .title {
         display: inline;
         position: relative;
@@ -637,21 +672,21 @@ ul.padded_list {
         font-size: 28px;
         font-weight: bold;
       }
-    
+
       span.icon {
         width: 36px;
         height: 36px;
         margin: 0px;
         padding: 4px;
         display: inline-block;
-      
+
         img {
           position: relative;
           top:4px;
           width: 32px;
         }
       }
-      
+
       i.fa-building {
         position: relative;
         color: $white;
@@ -660,17 +695,17 @@ ul.padded_list {
     .card {
       padding: 10px;
       color: $gray-medium;
-      
+
       h4 {
         color: $color1;
         margin: 0px 0px 2px 0px;
       }
-      
+
       label {
         margin: 0px;
         line-height: 18px;
       }
-      
+
       .status {
         text-align: right;
         font-weight: bold;
@@ -681,20 +716,20 @@ ul.padded_list {
           color: $color3;
         }
       }
-      
+
       .placeholder-cover-asset {
         height: 100%;
         span {
           top: 0px;
           font-size: 16px;
         }
-        
+
         img {
           left: 20%;
         }
       }
     }
-    
+
     ul.actions {
       list-style: none;
       font-size: 14px;
@@ -707,7 +742,7 @@ ul.padded_list {
         float: left;
         padding: 0px 5px;
         border-right: 1px solid $navbar-border;
-      
+
         a, a:hover {
           color: $color2;
         }
@@ -720,7 +755,7 @@ ul.padded_list {
       color: $gray-medium;
       padding: 20px 0px;
       font-size: 24px;
-      
+
       label {
         font-size: 12px;
         display: block;
@@ -733,21 +768,21 @@ ul.padded_list {
 }
 
 //---------------------------------------------------------------
-// Main CSS for wrapping sections 
+// Main CSS for wrapping sections
 //---------------------------------------------------------------
 .story-board {
   text-align: center;
   height: 100%;
   margin-top: 30px;
-  
+
   img {
     max-height: 150px;
   }
-  
+
   .icon {
     min-height: 165px;
   }
-  
+
   .step {
     height: 100%;
     border-right: 1px solid $navbar-border;
@@ -756,7 +791,7 @@ ul.padded_list {
   .step:last-child {
     border-right: none;
   }
-  
+
 }
 
 .errors {
@@ -765,7 +800,7 @@ ul.padded_list {
     @include border-radius(0%);
     margin-bottom: 2px;
   }
-  
+
   &.no-padding .alert {
     margin-bottom: 0px;
   }
@@ -775,14 +810,14 @@ ul.padded_list {
   .control-label {
     color: $gray-medium;
   }
-  
+
   em {
     color: $gray-medium;
     font-size: 10px;
     font-style: normal;
     text-decoration: none;
   }
-  
+
   input,
   textarea,
   select {
@@ -801,25 +836,25 @@ ul.padded_list {
     border-bottom: 1px solid $navbar-border;
     margin-top: 20px;
   }
-  
+
   .under-construction {
     background-color: $color1;
     color: $gray-lighter;
     padding: 10px;
     border: 4px solid $color2;
     @include border-radius(8px);
-    
+
     img {
       max-height: 120px;
     }
-    
+
     p:first-child {
       margin-top: 10px;
     }
     p {
       color: $gray-lighter;
     }
-    
+
     label.title {
       font-size: 22px;
       text-align: center;
@@ -828,20 +863,20 @@ ul.padded_list {
       margin-bottom: 10px;
     }
   }
-  
+
   .action-link a {
     line-height: inherit;
     height: inherit;
     margin-top: 10px;
   }
-  
+
   .welcome-header {
     background-color: $color2;
     border-color: darken($color2, 20%);
     color: $offwhite;
     margin-top: 20px;
     @include border-radius(4px);
-    
+
     span.close {
       position: relative;
       bottom: 80px;
@@ -858,11 +893,11 @@ ul.padded_list {
         display: block;
       }
     }
-    
+
     .span12 {
       padding: 10px;
     }
-    
+
     .numbers {
       padding-top: 20px;
 
@@ -901,7 +936,7 @@ table.new_deals {
   .disabled {
 	  @include opacity(.6);
   }
-  
+
   tr.new-deal {
     border-left: 1px solid $navbar-border;
     border-top: 1px solid $navbar-border;
@@ -909,20 +944,25 @@ table.new_deals {
     background-color: $white;
     height:100%;
     cursor: pointer;
-    
+
     td {
       vertical-align:top;
       height:100%;
-      
+
       &.footer {
         background-color: $color1;
       }
-      
+
       &.title {
         vertical-align: middle;
         padding-left: 10px;
       }
-      
+
+      &.follow {
+        vertical-align: middle;
+        padding-left: 10px;
+      }
+
       &.placeholder-cover-asset {
         background-color: $color2;
         vertical-align: middle;
@@ -931,7 +971,7 @@ table.new_deals {
         font-size: 14px;
         color: $white;
         text-align: center;
-        
+
         img {
           position: inherit;
           top: inherit;
@@ -940,7 +980,7 @@ table.new_deals {
         }
       }
     }
-    
+
     .cover-image {
       height: 80px;
       float: left;
@@ -951,7 +991,7 @@ table.new_deals {
       background-size: cover;
       overflow: hidden;
     }
-    
+
     table {
       border-spacing: 0px;
       td {
@@ -963,7 +1003,7 @@ table.new_deals {
         }
       }
     }
-    
+
     label {
       display: block;
 
@@ -971,7 +1011,7 @@ table.new_deals {
         padding-left: 5px;
       }
     }
-    
+
     table.bordered {
       height: 80px;
       td {
@@ -984,9 +1024,14 @@ table.new_deals {
       font-size: 20px;
       padding-bottom: 4px;
     }
+    .follow {
+      font-size: 16px;
+      padding-bottom: 4px;
+      padding-right: 4px;
+    }
     .summary {
       float: left;
-      
+
       .icon {
         color: $color2;
         i {
@@ -996,7 +1041,7 @@ table.new_deals {
         }
       }
     }
-    
+
     .location {
       font-size: 12px;
       color: $gray-light;
@@ -1008,7 +1053,7 @@ table.new_deals {
       color: $gray-light;
       line-height: 16px;
     }
-    
+
     .footer {
       padding: 10px 20px;
       height: 100%;
@@ -1030,7 +1075,7 @@ table.new_deals {
       }
     }
   }
-  
+
   .actions {
     background-color: $color1;
   }

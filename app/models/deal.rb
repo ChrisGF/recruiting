@@ -1,49 +1,54 @@
 class Deal < ActiveRecord::Base
   include Groundfloor::Addressable
-  
+  mount_uploader :image, ImageUploader
+  acts_as_followable
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
+
   belongs_to :user
-  
-  scope :published, -> {    
+
+  scope :published, -> {
     self.with_state(:published)
   }
-  
+
   monetize :amount_to_raise_cents
-  
-  CLOSE_TIMELINE = ['Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
+
+  CLOSE_TIMELINE = ['Oct 2014', 'Nov 2014', 'Dec 2014', '2015', "Flexible"]
   CAPITAL_TYPE =  ["Debt",  "Equity", "Both", "Flexible"]
-  
+  LENDING_CEILING = 200000
+
   # RULES
   INVALID_DATES=['Jun 2014', 'Jul 2014', '']
   INVALID_CAPITAL_TYPES=['Equity','Both','']
-  
+
   before_save :validate_project
-  
+
   state_machine :state, :initial => :new do
-    
+
     event :upgrade do
       transition :new => :unpublished, :unpublished => :published, :published => :closed
-    end    
+    end
 
     event :downgrade do
       transition :closed => :published, :published => :unpublished, :unpublished => :new
-    end    
-    
+    end
+
     event :pass_submission do
       transition any => :published
-    end    
+    end
 
     event :fail_submission do
       transition any => :failed_submission
-    end    
+    end
 
     event :publish do
       transition any => :published
-    end    
+    end
 
     event :unpublish do
       transition any => :unpublished
     end
-    
+
     state all - [:failed_submission, :new] do
       def acceptable?
         true
@@ -55,32 +60,32 @@ class Deal < ActiveRecord::Base
         false
       end
     end
-    
+
     state all - [:new, :unpublished] do
       def is_pending_approval?
         false
       end
     end
-    
+
     state :new, :unpublished do
       def is_pending_approval?
         true
       end
     end
-  
+
     state all - [:unpublished, :failed_submission, :new, :closed] do
       def is_published?
         true
       end
     end
-    
+
     state :unpublished, :failed_submission, :new, :closed do
       def is_published?
         false
       end
     end
   end
-  
+
   def state_name
     case self.state.to_s
     when "pending_submission"
@@ -91,7 +96,7 @@ class Deal < ActiveRecord::Base
       self.state.split("_").join(" ")
     end
   end
-  
+
   # Nested Attributes Objects.. Automatically build if there is nothing there
   def address
     super || build_address
@@ -99,11 +104,11 @@ class Deal < ActiveRecord::Base
 
   def invalid_deal?
     ( INVALID_DATES.include?(self.close_timeline) ||
-      self.amount_to_raise > 250000 ||
-      INVALID_CAPITAL_TYPES.include?(self.capital_type) 
+      self.amount_to_raise > LENDING_CEILING ||
+      INVALID_CAPITAL_TYPES.include?(self.capital_type)
     )
   end
-  
+
   def validate_project
     if invalid_deal?
       self.state = "failed_submission"
@@ -111,5 +116,9 @@ class Deal < ActiveRecord::Base
       self.state = "published" unless self.closed?
     end
   end
-  
+
+  def belongs_to_current_user?(user)
+    user.id == self.user_id
+  end
+
 end

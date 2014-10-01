@@ -1,5 +1,5 @@
 Recruiting::Application.routes.draw do
-  
+
   resources :developer_profiles
 
   match "/", to: "home#index", via: [:get]
@@ -7,7 +7,8 @@ Recruiting::Application.routes.draw do
   match "/developers", to: "home#developers", :as => :developers, via: [:get]
   match "/developers/next-steps", to: "home#next_steps", :as => :developers_next_steps, via: [:get]
   match '/accept_legal_message.js', to: 'deals#accept_legal_popup', :as => :accept_legal_popup, :via => [:get]
-
+  post 'follow/:id', to: 'deals#follow'
+  post 'unfollow/:id', to: 'deals#unfollow'
   resources(:deals) do
     match '/publish', to: 'deals#publish', :as => :publish, :via => [:post, :put]
     match '/unpublish', to: 'deals#unpublish', :as => :unpublish, :via => [:post, :put]
@@ -20,7 +21,7 @@ Recruiting::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
+
   root to: "home#index"
 
 end

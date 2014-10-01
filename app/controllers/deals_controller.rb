@@ -1,19 +1,20 @@
 class DealsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index]
-  
+
   def index
     @deals = current_user.deals.order(:name)
+    @followees = current_user.followees(Deal)
     return redirect_to "/developers/next-steps" if @deals.length < 1
   end
-  
+
   def create
     @deal = Deal.new(permitted_params.merge({ user_id: current_user.id }))
     create! do |success, failure|
-      success.html { 
+      success.html {
         flash.now[:success] = "Your proposal was created."
         redirect_to deals_path
       }
-      failure.html { 
+      failure.html {
         flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <br><span>#{@deal.errors.full_messages.join('<br>')}</span>"
         render :new
       }
@@ -37,7 +38,7 @@ class DealsController < InheritedResources::Base
       render :edit
     end
   end
-  
+
   def destroy
     destroy!(:info => "Your project was removed.") do |format|
       @deals = current_user.deals.order(:name)
@@ -49,9 +50,9 @@ class DealsController < InheritedResources::Base
         format.html { redirect_to deals_path }
       end
     end
-      
+
   end
-  
+
   def publish
     flash[:notice]="Great News!  Your deal has been published to our website."
     @deal = current_user.deals.find(params[:deal_id])
@@ -65,12 +66,31 @@ class DealsController < InheritedResources::Base
     flash[:notice] = "Your deal has successfully been unpublished and will no longer appear on the public website"
     redirect_to deals_path
   end
-  
+
+  def follow
+    @deal = find_deal
+    current_user.follow!(@deal)
+    redirect_to :back, notice: "Followed"
+  end
+
+  def unfollow
+    @deal = find_deal
+    current_user.unfollow!(@deal)
+    redirect_to :back, notice: "Unfollowed"
+  end
+
   protected
     def permitted_params
       params.require(:deal).permit!
     end
-    
+
   private :permitted_params
-  
+
+  def find_deal
+    if params[:friendly] == false
+      Deal.find(params[:id])
+    else
+      Deal.friendly.find(params[:id])
+    end
+  end
 end
